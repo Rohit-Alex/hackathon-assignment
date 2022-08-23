@@ -1,4 +1,4 @@
-import React, { Component,Suspense, lazy } from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Spinner from '../app/shared/Spinner';
@@ -35,8 +35,7 @@ const BlankPage = lazy(() => import('./general-pages/BlankPage'));
 
 
 
-class AppRoutes extends Component {
-  render () {
+const AppRoutes = () => {
     return (
       <Suspense fallback={<Spinner/>}>
         <Switch>
@@ -73,7 +72,7 @@ class AppRoutes extends Component {
         </Switch>
       </Suspense>
     );
-  }
+  
 }
 
 export default AppRoutes;
