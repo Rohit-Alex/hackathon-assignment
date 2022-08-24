@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from "react";
 import { Switch, Route } from "react-router-dom";
 
 import Spinner from '../app/shared/Spinner';
+import EventDetails from "./basic-ui/EventDetails";
 
 const Dashboard = lazy(() => import("./dashboard/Dashboard"));
 
@@ -32,7 +33,11 @@ const AppRoutes = () => {
     <Suspense fallback={<Spinner />}>
       <Switch>
         <Route exact path="/" component={Dashboard} />
-        <Route path="/basic-ui/buttons" component={Buttons} />
+        <Route exact path="/orders/1p_3p" component={Buttons} />
+        {/* <Route exact path="/orderDetails" component={EventDetails} /> */}
+        <Route exact path="/orderDetails/:eventId" component={EventDetails} />
+
+
         {/* <Route path="/basic-ui/dropdowns" component={Dropdowns} />
         <Route path="/basic-ui/typography" component={Typography} />
 

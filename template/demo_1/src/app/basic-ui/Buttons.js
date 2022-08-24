@@ -1,10 +1,11 @@
-import React, { Component } from "react";
-import { Table, Timeline } from "antd";
-import { Data, getColumnforOrders } from "./getCoulmn";
+import React from "react";
+import { Timeline } from "antd";
+import { Data } from "./getCoulmn";
 import "./button.scss";
-import { Button } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 
 const Buttons = () => {
+  const history = useHistory()
   return (
     <div className="Orders-details">
       <div className="page-header ">
@@ -12,11 +13,9 @@ const Buttons = () => {
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
-              <a href="!#" onClick={(event) => event.preventDefault()}>
                 Orders
-              </a>
             </li>
-            <li className="breadcrumb-item active" aria-current="page">
+            <li className="breadcrumb-item active">
               1p and 3P Orders
             </li>
           </ol>
@@ -37,7 +36,11 @@ const Buttons = () => {
                 <Timeline>
                   {Data.map((e) => (
                     <>
-                      <Timeline.Item color="green">
+                      <Timeline.Item color="green" onClick={() => { 
+                        // history.push(`/orderDetails?eventId=${e.eventList}`)
+                        history.push(`/orderDetails/${e.eventList}`)
+
+                        }}>
                         <button className="btn-inverse-primary button-list">
                           <span>{e.eventList}</span>
                           <span class="badge badge-inverse-primary badge-pill numbers-id">

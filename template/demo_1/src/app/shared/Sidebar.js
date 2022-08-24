@@ -53,7 +53,7 @@ const Sidebar = () => {
 
     const dropdownPaths = [
       { path: "/apps", state: "appsMenuOpen" },
-      { path: "/basic-ui", state: "basicUiMenuOpen" },
+      { path: "/orders", state: "basicUiMenuOpen" },
       { path: "/advanced-ui", state: "advancedUiMenuOpen" },
       { path: "/form-elements", state: "formElementsMenuOpen" },
       { path: "/tables", state: "tablesMenuOpen" },
@@ -81,14 +81,12 @@ const Sidebar = () => {
         >
           <Link className="nav-link" to="/">
             <span className="menu-title">
-              <Trans>Dashboard</Trans>
+              Dashboard
             </span>
             <i className="mdi mdi-home menu-icon"></i>
           </Link>
         </li>
-        <li
-          className={isPathActive("/basic-ui") ? "nav-item active" : "nav-item"}
-        >
+        <li className={isPathActive("/orders") ? "nav-item active" : "nav-item"}>
           <div
             className={
               state.basicUiMenuOpen ? "nav-link menu-expanded" : "nav-link"
@@ -97,7 +95,7 @@ const Sidebar = () => {
             data-toggle="collapse"
           >
             <span className="menu-title">
-              <Trans>Orders</Trans>
+              Orders
             </span>
             <i className="menu-arrow"></i>
             <i className="mdi mdi-crosshairs-gps menu-icon"></i>
@@ -108,13 +106,13 @@ const Sidebar = () => {
                 {" "}
                 <Link
                   className={
-                    isPathActive("/basic-ui/buttons")
+                    isPathActive("/orders/1p_3p")
                       ? "nav-link active"
                       : "nav-link"
                   }
-                  to="/basic-ui/buttons"
+                  to="/orders/1p_3p"
                 >
-                  <Trans>1P & 3P</Trans>
+                  1P & 3P
                 </Link>
               </li>
             </ul>
@@ -133,7 +131,7 @@ const Sidebar = () => {
             data-toggle="collapse"
           >
             <span className="menu-title">
-              <Trans>Payments</Trans>
+              Payments
             </span>
             <i className="menu-arrow"></i>
             <i className="mdi mdi-format-list-bulleted menu-icon"></i>
@@ -150,7 +148,7 @@ const Sidebar = () => {
                   }
                   to="/form-elements/basic-elements"
                 >
-                  <Trans>1P</Trans>
+                  1P
                 </Link>
               </li>
             </ul>
@@ -167,7 +165,7 @@ const Sidebar = () => {
             data-toggle="collapse"
           >
             <span className="menu-title">
-              <Trans>Logistics</Trans>
+              Logistics
             </span>
             <i className="menu-arrow"></i>
             <i className="mdi mdi-table-large menu-icon"></i>
@@ -184,7 +182,7 @@ const Sidebar = () => {
                   }
                   to="/tables/basic-table"
                 >
-                  <Trans>Details</Trans>
+                  Details
                 </Link>
               </li>
             </ul>
@@ -199,7 +197,7 @@ const Sidebar = () => {
             data-toggle="collapse"
           >
             <span className="menu-title">
-              <Trans>Financial</Trans>
+              Financial
             </span>
             <i className="menu-arrow"></i>
             <i className="mdi mdi-contacts menu-icon"></i>
@@ -214,7 +212,7 @@ const Sidebar = () => {
                   }
                   to="/icons/mdi"
                 >
-                  <Trans>1P</Trans>
+                  1P
                 </Link>
               </li>
             </ul>
