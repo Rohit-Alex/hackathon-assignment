@@ -1,7 +1,9 @@
+import { Skeleton } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { ProgressBar } from 'react-bootstrap';
 import {Bar, Doughnut} from 'react-chartjs-2';
 import DatePicker from "react-datepicker";
+import { CardShimmerEffect } from '../Shimmer/CardShimmer';
 
 
 
@@ -46,8 +48,47 @@ const defaultVisitScaleOptions = {
     }
   }
 }
-const ListItem = (props) => {
 
+const cardData = [
+  {
+    imgSrc: "../../assets/images/dashboard/circle.svg",
+    cardTitle: 'Weekly Sales',
+    cardValue: '$ 15,0000',
+    cardStats: 'Increased by 60%',
+    label: 'Sales',
+    graphData: [20, 40, 15, 35, 25, 50, 30, 20],
+    additionalClass: 'bg-primary'
+  },
+  {
+    imgSrc: "../../assets/images/dashboard/circle.svg",
+    cardTitle: 'Weekly Orders',
+    cardValue: '45,6334',
+    cardStats: 'Increased by 20%',
+    label: 'Order',
+    graphData: [50, 40, 15, 35, 25, 50, 30, 20],
+    additionalClass: 'bg-success'
+  },
+  {
+    imgSrc: "../../assets/images/dashboard/circle.svg",
+    cardTitle: 'Visitors Online',
+    cardValue: '95,5741',
+    cardStats: 'Decreased by 10%',
+    label: 'Visitors',
+    graphData: [10, 40, 15, 35, 25, 50, 30, 20],
+    additionalClass: 'bg-danger'
+  },
+  {
+    imgSrc: "../../assets/images/dashboard/circle.svg",
+    cardTitle: 'Raat gyi baat gyi',
+    cardValue: '35,0000',
+    cardStats: 'Increased by 12%',
+    label: 'Raat',
+    graphData: [80, 40, 15, 55, 25, 50, 30, 20],
+    additionalClass: 'bg-info'
+  },
+]
+
+const ListItem = (props) => {
   return (
     <li className={(props.isCompleted ? 'completed' : null)}>
       <div className="form-check">
@@ -65,6 +106,8 @@ const ListItem = (props) => {
 
 const Dashboard = () => {
   const [startDate, setStartDate] = useState(new Date())
+  const [cardDetails, setCardDetails] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
   const [visitSaleData, setVisitSaleData] = useState({})
   const visitSaleOptions = defaultVisitScaleOptions
   const [trafficData, setTrafficData] = useState({})
@@ -149,7 +192,24 @@ const Dashboard = () => {
     setInputValue(event.target.value)
   }
   
-  useEffect(()=>{
+  const apiCall = () => new Promise(resolve => setTimeout(resolve(cardData), 300))
+  const getApiData = async () => {
+    setIsLoading(true)
+    let finalData = []
+    try {
+      finalData = await apiCall()
+      console.log(finalData, 'finalData ----->>>')
+    } catch (err) {
+
+    } finally {
+      setIsLoading(false)
+      return finalData
+    }
+    
+  }
+
+  const mountHelperFunction = async () => {
+    const data = await getApiData()
     let ctx = document.getElementById('visitSaleChart')?.getContext("2d")
     if (ctx) {
       let gradientBar1 = ctx.createLinearGradient(0, 0, 0, 181)
@@ -177,45 +237,21 @@ const Dashboard = () => {
       gradientdonut3.addColorStop(1, 'rgba(255, 205, 150, 1)')
 
 
-
       const newVisitSaleData = {
         labels: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG'],
-        datasets: [
-          {
-            label: "CHN",
-            borderColor: gradientBar1,
-            backgroundColor: gradientBar1,
-            hoverBackgroundColor: gradientBar1,
-            legendColor: gradientBar1,
-            pointRadius: 0,
-            fill: false,
-            borderWidth: 1,
-            data: [20, 40, 15, 35, 25, 50, 30, 20]
-          },
-          {
-            label: "USA",
-            borderColor: gradientBar2,
-            backgroundColor: gradientBar2,
-            hoverBackgroundColor: gradientBar2,
-            legendColor: gradientBar2,
-            pointRadius: 0,
-            fill: false,
-            borderWidth: 1,
-            data: [40, 30, 20, 10, 50, 15, 35, 40]
-          },
-          {
-            label: "UK",
-            borderColor: gradientBar3,
-            backgroundColor: gradientBar3,
-            hoverBackgroundColor: gradientBar3,
-            legendColor: gradientBar3,
-            pointRadius: 0,
-            fill: false,
-            borderWidth: 1,
-            data: [70, 10, 30, 40, 25, 50, 15, 30]
-          }
-        ]
+        datasets: data.map((e, idx) => ({
+          label: e.cardTitle,
+          borderColor: idx === 0 ? gradientBar1 : idx === 1 ? gradientBar2 : gradientBar3,
+          backgroundColor: idx === 0 ? gradientBar1 : idx === 1 ? gradientBar2 : gradientBar3,
+          hoverBackgroundColor: idx === 0 ? gradientBar1 : idx === 1 ? gradientBar2 : gradientBar3,
+          legendColor: idx === 0 ? gradientBar1 : idx === 1 ? gradientBar2 : gradientBar3,
+          pointRadius: 0,
+          fill: false,
+          borderWidth: 1,
+          data: e.graphData
+        }))
       }
+
       const newTrafficData = {
         datasets: [{
           data: [30, 30, 40],
@@ -251,40 +287,12 @@ const Dashboard = () => {
       setVisitSaleData(newVisitSaleData)
       setTrafficData(newTrafficData)
     }
-    
-  }, [])
-
-
-  const toggleProBanner = () => {
-    document.querySelector('.proBanner').classList.toggle("hide");
   }
 
-  const cardData = [
-    {
-      imgSrc: "../../assets/images/dashboard/circle.svg",
-      cardTitle: 'Weekly Sales',
-      cardValue: '$ 15,0000',
-      cardStats: 'Increased by 60%'
-    },
-    {
-      imgSrc: "../../assets/images/dashboard/circle.svg",
-      cardTitle: 'Weekly Orders',
-      cardValue: '45,6334',
-      cardStats: 'Increased by 20%'
-    },
-    {
-      imgSrc: "../../assets/images/dashboard/circle.svg",
-      cardTitle: 'Visitors Online',
-      cardValue: '95,5741',
-      cardStats: 'Decreased by 10%'
-    },
-    {
-      imgSrc: "../../assets/images/dashboard/circle.svg",
-      cardTitle: 'Raat gyi baat gyi',
-      cardValue: '35,0000',
-      cardStats: 'Increased by 12%'
-    },
-  ]
+  useEffect(()=>{
+    mountHelperFunction()
+  }, [])
+
     return (
       <div className='dashboard-container'>
         <div className="page-header">
@@ -300,10 +308,13 @@ const Dashboard = () => {
             </ul>
           </nav>
         </div>
+        
+        {/* FIRST ROW  */}
         <div className="row">
           {cardData.map(e => (
             <div className="col-md-3 stretch-card grid-margin">
-              <div className="card bg-gradient-danger card-img-holder text-white">
+              
+              <div className={`card ${e.additionalClass} card-img-holder text-white`}>
                 <div className="card-body">
                   <img src={require("../../assets/images/dashboard/circle.svg")} className="card-img-absolute" alt="circle" />
                   <h4 className="font-weight-normal mb-3">{e.cardTitle} <i className="mdi mdi-chart-line mdi-24px float-right"></i>
@@ -311,10 +322,13 @@ const Dashboard = () => {
                   <h2 className="mb-5">{e.cardValue}</h2>
                   <h6 className="card-text">{e.cardStats}</h6>
                 </div>
-                </div></div>
+              </div>
+              
+            </div>
           ))}
-          
         </div>
+
+        {/* SECOND ROW  */}
         <div className="row">
           <div className="col-md-7 grid-margin stretch-card">
             <div className="card">
@@ -323,18 +337,12 @@ const Dashboard = () => {
                   <h4 className="card-title float-left">Visit And Sales Statistics</h4>
                   <div id="visit-sale-chart-legend" className="rounded-legend legend-horizontal legend-top-right float-right">
                     <ul>
-                      <li>
-                        <span className="legend-dots bg-primary">
-                        </span>CHN
-                      </li>
-                      <li>
-                        <span className="legend-dots bg-danger">
-                        </span>USA
-                      </li>
-                      <li>
-                        <span className="legend-dots bg-info">
-                        </span>UK
-                      </li>
+                      {cardDetails.map(e => (
+                        <li>
+                          <span className={`legend-dots ${e.additionalClass}`}>
+                          </span>{e.label}
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 </div>
@@ -367,8 +375,10 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
+
+
+        {/* THIRD ROW STARTS  */}
         <div className="row">
-          {/* THIRD ROW STARTS  */}
           <div className="col-12 grid-margin">
             <div className="card">
               <div className="card-body">
@@ -433,8 +443,8 @@ const Dashboard = () => {
           </div>
         </div>
 
+        {/* FOURTH ROW  STARTS WITH DATEPICKER*/}
         <div className="row">
-          {/* FOURTH ROW  STARTS WITH DATEPICKER*/}
           <div className="col-lg-5 grid-margin stretch-card">
             <div className="card">
               <div className="card-body p-0 d-flex">
@@ -485,8 +495,8 @@ const Dashboard = () => {
           </div>
         </div>
 
+        {/* LAST ROW STARTS WITH BASIC TABLE */}
         <div className="row">
-          {/* LAST ROW STARTS WITH BASIC TABLE */}
           <div className="col-xl-7 grid-margin stretch-card">
             <div className="card">
               <div className="card-body">

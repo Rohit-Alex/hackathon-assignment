@@ -77,8 +77,8 @@ const Sidebar = () => {
     return (
       <nav className="sidebar sidebar-offcanvas" id="sidebar">
         <ul className="nav">
-          <li className={ isPathActive('/dashboard') ? 'nav-item active' : 'nav-item' }>
-            <Link className="nav-link" to="/dashboard">
+          <li className={ isPathActive('/') ? 'nav-item active' : 'nav-item' }>
+            <Link className="nav-link" to="/">
               <span className="menu-title"><Trans>Dashboard</Trans></span>
               <i className="mdi mdi-home menu-icon"></i>
             </Link>

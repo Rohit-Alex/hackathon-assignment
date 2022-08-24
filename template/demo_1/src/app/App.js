@@ -1,6 +1,7 @@
 import React, { Component, useEffect, useState } from 'react';
 import { useLocation, withRouter } from 'react-router-dom';
 import './App.scss';
+import 'antd/dist/antd.css';
 import AppRoutes from './AppRoutes';
 import Navbar from './shared/Navbar';
 import Sidebar from './shared/Sidebar';
