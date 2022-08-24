@@ -44,7 +44,7 @@ body {
   width: calc(100% - #{$sidebar-width-lg});
   min-height: calc(100vh - #{$navbar-height});
   position: absolute;
-  right: 20px;
+  right: 24px;
   @include display-flex();
   @include flex-direction(column);
   @media (max-width: 991px) {
