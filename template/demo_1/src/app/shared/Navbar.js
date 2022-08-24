@@ -14,7 +14,17 @@ const Navbar = () => {
   return (
     <nav className="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div className="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <span style={{ fontWeight: "300", fontSize: "40px" }}>O</span>peration
+        <span
+          style={{
+            fontWeight: "300",
+            fontSize: "40px",
+          }}
+        >
+          O
+        </span>
+        <span style={{ fontSize: "24px" }}>peration </span>
+        <br />
+        <br />
         Manager
       </div>
       <div className="navbar-menu-wrapper d-flex align-items-stretch">
@@ -44,10 +54,10 @@ const Navbar = () => {
             <Dropdown alignRight>
               <Dropdown.Toggle className="nav-link">
                 <div className="nav-profile-img">
-                  {/* <img
+                  <img
                     src={require("../../assets/images/faces/face1.jpg")}
                     alt="user"
-                  /> */}
+                  />
                   <span className="availability-status online"></span>
                 </div>
                 <div className="nav-profile-text">
