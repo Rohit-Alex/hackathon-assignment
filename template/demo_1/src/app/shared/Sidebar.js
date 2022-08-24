@@ -76,7 +76,9 @@ const Sidebar = () => {
   return (
     <nav className="sidebar sidebar-offcanvas" id="sidebar">
       <ul className="nav">
-        <li className={location.pathname === '/' ? "nav-item active" : "nav-item"}>
+        <li
+          className={location.pathname === "/" ? "nav-item active" : "nav-item"}
+        >
           <Link className="nav-link" to="/">
             <span className="menu-title">
               <Trans>Dashboard</Trans>
