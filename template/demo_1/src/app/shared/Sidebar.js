@@ -112,20 +112,7 @@ const Sidebar = () => {
                   }
                   to="/basic-ui/buttons"
                 >
-                  <Trans>1P</Trans>
-                </Link>
-              </li>
-              <li className="nav-item">
-                {" "}
-                <Link
-                  className={
-                    isPathActive("/basic-ui/dropdowns")
-                      ? "nav-link active"
-                      : "nav-link"
-                  }
-                  to="/basic-ui/dropdowns"
-                >
-                  <Trans>3P</Trans>
+                  <Trans>1P & 3P</Trans>
                 </Link>
               </li>
             </ul>
