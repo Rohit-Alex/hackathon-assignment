@@ -1,6 +1,7 @@
 import React, { Component, useEffect, useState } from "react";
 import { useLocation, withRouter } from "react-router-dom";
 import "./App.scss";
+import "antd/dist/antd.css";
 import AppRoutes from "./AppRoutes";
 import Navbar from "./shared/Navbar";
 import Sidebar from "./shared/Sidebar";
@@ -57,7 +58,7 @@ const App = () => {
   let navbarComponent = !state.isFullPageLayout ? <Navbar /> : "";
   let sidebarComponent = !state.isFullPageLayout ? <Sidebar /> : "";
   let SettingsPanelComponent = !state.isFullPageLayout ? <SettingsPanel /> : "";
-  let footerComponent = !state.isFullPageLayout ? <Footer /> : "";
+
   return (
     <div className="container-scroller">
       {navbarComponent}
@@ -68,7 +69,6 @@ const App = () => {
             <AppRoutes />
             {SettingsPanelComponent}
           </div>
-          {footerComponent}
         </div>
       </div>
     </div>
