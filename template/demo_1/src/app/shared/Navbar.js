@@ -35,7 +35,7 @@ const Navbar = () =>  {
               <Dropdown alignRight>
                 <Dropdown.Toggle className="nav-link">
                   <div className="nav-profile-img">
-                    <img src={require("../../assets/images/faces/face1.jpg")} alt="user"/>
+                    {/* <img src={require("../../assets/images/faces/face1.jpg")} alt="user"/> */}
                     <span className="availability-status online"></span>
                   </div>
                   <div className="nav-profile-text">
@@ -67,7 +67,7 @@ const Navbar = () =>  {
                   <div className="dropdown-divider"></div>
                   <Dropdown.Item className="dropdown-item preview-item" onClick={evt =>evt.preventDefault()}>
                     <div className="preview-thumbnail">
-                      <img src={require("../../assets/images/faces/face4.jpg")} alt="user" className="profile-pic"/>
+                      {/* <img src={require("../../assets/images/faces/face4.jpg")} alt="user" className="profile-pic"/> */}
                     </div>
                     <div className="preview-item-content d-flex align-items-start flex-column justify-content-center">
                       <h6 className="preview-subject ellipsis mb-1 font-weight-normal"><Trans>Mark send you a message</Trans></h6>
@@ -79,7 +79,7 @@ const Navbar = () =>  {
                   <div className="dropdown-divider"></div>
                   <Dropdown.Item className="dropdown-item preview-item" onClick={evt =>evt.preventDefault()}>
                     <div className="preview-thumbnail">
-                      <img src={require("../../assets/images/faces/face2.jpg")} alt="user" className="profile-pic"/>
+                      {/* <img src={require("../../assets/images/faces/face2.jpg")} alt="user" className="profile-pic"/> */}
                     </div>
                     <div className="preview-item-content d-flex align-items-start flex-column justify-content-center">
                       <h6 className="preview-subject ellipsis mb-1 font-weight-normal"><Trans>Cregh send you a message</Trans></h6>
@@ -91,7 +91,7 @@ const Navbar = () =>  {
                   <div className="dropdown-divider"></div>
                   <Dropdown.Item className="dropdown-item preview-item" onClick={evt =>evt.preventDefault()}>
                     <div className="preview-thumbnail">
-                      <img src={require("../../assets/images/faces/face3.jpg")} alt="user" className="profile-pic"/>
+                      {/* <img src={require("../../assets/images/faces/face3.jpg")} alt="user" className="profile-pic"/> */}
                     </div>
                     <div className="preview-item-content d-flex align-items-start flex-column justify-content-center">
                       <h6 className="preview-subject ellipsis mb-1 font-weight-normal"><Trans>Profile picture updated</Trans></h6>

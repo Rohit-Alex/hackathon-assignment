@@ -5,7 +5,6 @@ import 'antd/dist/antd.css';
 import AppRoutes from './AppRoutes';
 import Navbar from './shared/Navbar';
 import Sidebar from './shared/Sidebar';
-import SettingsPanel from './shared/SettingsPanel';
 import Footer from './shared/Footer';
 import { useTranslation, withTranslation } from "react-i18next";
 
@@ -47,7 +46,6 @@ const App = () => {
 
     let navbarComponent = !state.isFullPageLayout ? <Navbar/> : '';
     let sidebarComponent = !state.isFullPageLayout ? <Sidebar/> : '';
-    let SettingsPanelComponent = !state.isFullPageLayout ? <SettingsPanel/> : '';
     let footerComponent = !state.isFullPageLayout ? <Footer/> : '';
     return (
       <div className="container-scroller">
@@ -57,7 +55,6 @@ const App = () => {
           <div className="main-panel">
             <div className="content-wrapper">
               <AppRoutes/>
-              { SettingsPanelComponent }
             </div>
             { footerComponent }
           </div>
