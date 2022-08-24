@@ -34,8 +34,8 @@ const Buttons = () => {
               <hr />
               <div className="template-demo">
                 <Timeline>
-                  {Data.map((e) => (
-                    <>
+                  {Data.map((e, idx) => (
+                    <React.Fragment key={idx}>
                       <Timeline.Item color="green" onClick={() => { 
                         // history.push(`/orderDetails?eventId=${e.eventList}`)
                         history.push(`/orderDetails/${e.eventList}`)
@@ -48,7 +48,7 @@ const Buttons = () => {
                           </span>
                         </button>
                       </Timeline.Item>
-                    </>
+                    </React.Fragment>
                   ))}
                 </Timeline>
               </div>
