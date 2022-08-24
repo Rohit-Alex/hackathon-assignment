@@ -57,36 +57,40 @@ const cardData = [
     cardTitle: "Orders",
     cardValue: "100",
     cardStats: "Increased by 60%",
-    label: "Sales",
+    label: "Orders",
     graphData: [20, 40, 15, 35, 25, 50, 30, 20],
     additionalClass: "bg-gradient-danger",
+    value: "50%",
   },
   {
     imgSrc: "../../assets/images/dashboard/circle.svg",
     cardTitle: "Payments",
     cardValue: "44",
     cardStats: "Increased by 20%",
-    label: "Order",
+    label: "Payments",
     graphData: [50, 40, 15, 35, 25, 50, 30, 20],
     additionalClass: "bg-gradient-info",
+    value: "10%",
   },
   {
     imgSrc: "../../assets/images/dashboard/circle.svg",
     cardTitle: "Logistics",
     cardValue: "95",
     cardStats: "Decreased by 10%",
-    label: "Visitors",
+    label: "Logistics",
     graphData: [10, 40, 15, 35, 25, 50, 30, 20],
     additionalClass: "bg-gradient-success",
+    value: "20%",
   },
   {
     imgSrc: "../../assets/images/dashboard/circle.svg",
     cardTitle: "Financial",
     cardValue: "190",
     cardStats: "Increased by 12%",
-    label: "Raat",
+    label: "Financial",
     graphData: [80, 40, 15, 55, 25, 50, 30, 20],
     additionalClass: "bg-gradient-info",
+    value: "40%",
   },
 ];
 
@@ -206,6 +210,7 @@ const Dashboard = () => {
     try {
       finalData = await apiCall();
       console.log(finalData, "finalData ----->>>");
+      setCardDetails(finalData);
     } catch (err) {
     } finally {
       setIsLoading(false);
@@ -246,13 +251,37 @@ const Dashboard = () => {
         datasets: data.map((e, idx) => ({
           label: e.cardTitle,
           borderColor:
-            idx === 0 ? gradientBar1 : idx === 1 ? gradientBar2 : gradientBar3,
+            idx === 0
+              ? gradientBar1
+              : idx === 1
+              ? gradientBar2
+              : idx === 2
+              ? gradientBar3
+              : "green",
           backgroundColor:
-            idx === 0 ? gradientBar1 : idx === 1 ? gradientBar2 : gradientBar3,
+            idx === 0
+              ? gradientBar1
+              : idx === 1
+              ? gradientBar2
+              : idx === 2
+              ? gradientBar3
+              : "green",
           hoverBackgroundColor:
-            idx === 0 ? gradientBar1 : idx === 1 ? gradientBar2 : gradientBar3,
+            idx === 0
+              ? gradientBar1
+              : idx === 1
+              ? gradientBar2
+              : idx === 2
+              ? gradientBar3
+              : "green",
           legendColor:
-            idx === 0 ? gradientBar1 : idx === 1 ? gradientBar2 : gradientBar3,
+            idx === 0
+              ? gradientBar1
+              : idx === 1
+              ? gradientBar2
+              : idx === 2
+              ? gradientBar3
+              : "green",
           pointRadius: 0,
           fill: false,
           borderWidth: 1,
@@ -263,20 +292,36 @@ const Dashboard = () => {
       const newTrafficData = {
         datasets: [
           {
-            data: [30, 30, 40],
-            backgroundColor: [gradientdonut1, gradientdonut2, gradientdonut3],
+            data: [10, 30, 50, 5],
+            backgroundColor: [
+              gradientdonut1,
+              gradientdonut2,
+              gradientdonut3,
+              "green",
+            ],
             hoverBackgroundColor: [
               gradientdonut1,
               gradientdonut2,
               gradientdonut3,
+              "green",
             ],
-            borderColor: [gradientdonut1, gradientdonut2, gradientdonut3],
-            legendColor: [gradientdonut1, gradientdonut2, gradientdonut3],
+            borderColor: [
+              gradientdonut1,
+              gradientdonut2,
+              gradientdonut3,
+              "green",
+            ],
+            legendColor: [
+              gradientdonut1,
+              gradientdonut2,
+              gradientdonut3,
+              "green",
+            ],
           },
         ],
 
         // These labels appear in the legend and in the tooltips when hovering different arcs
-        labels: ["Search Engines", "Direct Click", "Bookmarks Click"],
+        labels: data.map((e) => e.label),
       };
       setVisitSaleData(newVisitSaleData);
       setTrafficData(newTrafficData);
@@ -376,19 +421,15 @@ const Dashboard = () => {
                 className="rounded-legend legend-vertical legend-bottom-left pt-4"
               >
                 <ul>
-                  <li>
-                    <span className="legend-dots bg-info"></span>Search Engines
-                    <span className="float-right">30%</span>
-                  </li>
-                  <li>
-                    <span className="legend-dots bg-success"></span>Direct Click
-                    <span className="float-right">30%</span>
-                  </li>
-                  <li>
-                    <span className="legend-dots bg-danger"></span>Bookmarks
-                    Click
-                    <span className="float-right">40%</span>
-                  </li>
+                  {cardDetails.map((e) => (
+                    <li>
+                      <span
+                        className={`legend-dots ${e.additionalClass}`}
+                      ></span>
+                      {e.label}
+                      <span className="float-right">{e.value}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
