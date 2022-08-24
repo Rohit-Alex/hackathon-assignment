@@ -40,7 +40,7 @@ const Buttons = () => {
                       <Timeline.Item color="green">
                         <button className="btn-inverse-primary button-list">
                           <span>{e.eventList}</span>
-                          <span class="badge badge-inverse-primary badge-pill">
+                          <span class="badge badge-inverse-primary badge-pill numbers-id">
                             {e.failedEvents}
                           </span>
                         </button>
