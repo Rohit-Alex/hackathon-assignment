@@ -52,7 +52,7 @@ const Navbar = () => {
                 </div>
                 <div className="nav-profile-text">
                   <p className="mb-1 text-black">
-                    <Trans>Rohit kumar</Trans>
+                    <Trans>Admin</Trans>
                   </p>
                 </div>
               </Dropdown.Toggle>
