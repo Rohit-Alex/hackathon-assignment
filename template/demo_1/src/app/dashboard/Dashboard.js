@@ -1,9 +1,5 @@
-import { Skeleton } from "antd";
 import React, { useEffect, useState } from "react";
-import { ProgressBar } from "react-bootstrap";
 import { Bar, Doughnut } from "react-chartjs-2";
-import DatePicker from "react-datepicker";
-import { CardShimmerEffect } from "../Shimmer/CardShimmer";
 
 const defaultVisitScaleOptions = {
   scales: {
