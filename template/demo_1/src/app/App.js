@@ -1,11 +1,13 @@
-import React, { Component, useEffect, useState } from 'react';
+
+import React, { useEffect, useState } from 'react';
+
 import { useLocation, withRouter } from 'react-router-dom';
 import './App.scss';
 import 'antd/dist/antd.css';
 import AppRoutes from './AppRoutes';
 import Navbar from './shared/Navbar';
 import Sidebar from './shared/Sidebar';
-import Footer from './shared/Footer';
+
 
 import { useTranslation, withTranslation } from "react-i18next";
 
@@ -58,18 +60,19 @@ const App = () => {
   let navbarComponent = !state.isFullPageLayout ? <Navbar /> : "";
   let sidebarComponent = !state.isFullPageLayout ? <Sidebar /> : "";
 
-  return (
-    <div className="container-scroller">
-      {navbarComponent}
-      <div className="container-fluid page-body-wrapper">
-        {sidebarComponent}
-        <div className="main-panel" id="side-bar-dashboard">
-          <div className="content-wrapper">
-            <AppRoutes />
+    return (
+      <div className="container-scroller">
+        { navbarComponent }
+        <div className="container-fluid page-body-wrapper">
+          { sidebarComponent }
+          <div className="main-panel">
+            <div className="content-wrapper">
+              <AppRoutes/>
+            </div>
+
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

@@ -90,30 +90,7 @@ const cardData = [
   },
 ];
 
-const ListItem = (props) => {
-  return (
-    <li className={props.isCompleted ? "completed" : null}>
-      <div className="form-check">
-        <label htmlFor="" className="form-check-label">
-          <input
-            className="checkbox"
-            type="checkbox"
-            checked={props.isCompleted}
-            onChange={props.changed}
-          />{" "}
-          {props.children} <i className="input-helper"></i>
-        </label>
-      </div>
-      <i
-        className="remove mdi mdi-close-circle-outline"
-        onClick={props.remove}
-      ></i>
-    </li>
-  );
-};
-
 const Dashboard = () => {
-  const [startDate, setStartDate] = useState(new Date());
   const [cardDetails, setCardDetails] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [visitSaleData, setVisitSaleData] = useState({});
@@ -127,76 +104,6 @@ const Dashboard = () => {
     },
     legend: false,
   };
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      task: "Pick up kids from school",
-      isCompleted: false,
-    },
-    {
-      id: 2,
-      task: "Prepare for presentation",
-      isCompleted: true,
-    },
-    {
-      id: 3,
-      task: "Print Statements",
-      isCompleted: false,
-    },
-    {
-      id: 4,
-      task: "Create invoice",
-      isCompleted: false,
-    },
-    {
-      id: 5,
-      task: "Call John",
-      isCompleted: true,
-    },
-    {
-      id: 6,
-      task: "Meeting with Alisa",
-      isCompleted: false,
-    },
-  ]);
-  const [inputValue, setInputValue] = useState("");
-
-  const statusChangedHandler = (event, id) => {
-    const todo = { ...todos[id] };
-    todo.isCompleted = event.target.checked;
-
-    const todosCloned = [...todos];
-    todosCloned[id] = todo;
-
-    setTodos(todosCloned);
-  };
-
-  const handleChange = (date) => {
-    setStartDate(date);
-  };
-
-  const addTodo = (event) => {
-    event.preventDefault();
-
-    const todosCloned = [...todos];
-    todosCloned.unshift({
-      id: todos.length ? todos[todos.length - 1].id + 1 : 1,
-      task: inputValue,
-      isCompleted: false,
-    });
-    setInputValue("");
-    setTodos(todosCloned);
-  };
-
-  const removeTodo = (index) => {
-    const todosCloned = [...todos];
-    todosCloned.splice(index, 1);
-    setTodos(todosCloned);
-  };
-
-  const inputChangeHandler = (event) => {
-    setInputValue(event.target.value);
-  };
 
   const apiCall = () =>
     new Promise((resolve) => setTimeout(resolve(cardData), 300));
@@ -205,12 +112,12 @@ const Dashboard = () => {
     let finalData = [];
     try {
       finalData = await apiCall();
-      console.log(finalData, "finalData ----->>>");
       setCardDetails(finalData);
     } catch (err) {
     } finally {
-      setIsLoading(false);
-      return finalData;
+      setIsLoading(false)
+      setCardDetails(finalData)
+      return finalData
     }
   };
 
@@ -218,21 +125,23 @@ const Dashboard = () => {
     const data = await getApiData();
     let ctx = document.getElementById("visitSaleChart")?.getContext("2d");
     if (ctx) {
-      let gradientBar1 = ctx.createLinearGradient(0, 0, 0, 280);
-      gradientBar1.addColorStop(0, "rgba(254, 124, 150, 1)");
-      gradientBar1.addColorStop(1, "rgba(255, 205, 150, 1)");
+
+      let gradientBar1 = ctx.createLinearGradient(0, 0, 0, 181);
+      gradientBar1.addColorStop(0, "#ffbf96");
+      gradientBar1.addColorStop(1, "#fe7096");
+
 
       let gradientBar2 = ctx.createLinearGradient(0, 0, 0, 360);
-      gradientBar2.addColorStop(0, "rgba(54, 215, 232, 1)");
-      gradientBar2.addColorStop(1, "rgba(177, 148, 250, 1)");
+      gradientBar2.addColorStop(0, "#90caf9");
+      gradientBar2.addColorStop(1, "#047edf");
 
       let gradientBar3 = ctx.createLinearGradient(0, 0, 0, 300);
-      gradientBar3.addColorStop(0, "rgba(6, 185, 157, 1)");
-      gradientBar3.addColorStop(1, "rgba(132, 217, 210, 1)");
+      gradientBar3.addColorStop(0, "#84d9d2");
+      gradientBar3.addColorStop(1, "#07cdae");
 
-      let gradientBar4 = ctx.createLinearGradient(0, 0, 0, 260);
-      gradientBar4.addColorStop(0, "rgba(218, 140, 255, 1)");
-      gradientBar4.addColorStop(1, "rgba(154, 85, 255, 1)");
+      // let gradientBar4 = ctx.createLinearGradient(0, 0, 0, 600);
+      // gradientBar3.addColorStop(0, "#90caf9");
+      // gradientBar3.addColorStop(1, "#047edf");
 
       let gradientdonut1 = ctx.createLinearGradient(0, 0, 0, 180);
       gradientdonut1.addColorStop(0, "rgba(254, 124, 150, 1)");
@@ -254,38 +163,10 @@ const Dashboard = () => {
         labels: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG"],
         datasets: data.map((e, idx) => ({
           label: e.cardTitle,
-          borderColor:
-            idx === 0
-              ? gradientBar1
-              : idx === 1
-              ? gradientBar2
-              : idx === 2
-              ? gradientBar3
-              : gradientBar4,
-          backgroundColor:
-            idx === 0
-              ? gradientBar1
-              : idx === 1
-              ? gradientBar2
-              : idx === 2
-              ? gradientBar3
-              : gradientBar4,
-          hoverBackgroundColor:
-            idx === 0
-              ? gradientBar1
-              : idx === 1
-              ? gradientBar2
-              : idx === 2
-              ? gradientBar3
-              : gradientBar4,
-          legendColor:
-            idx === 0
-              ? gradientBar1
-              : idx === 1
-              ? gradientBar2
-              : idx === 2
-              ? gradientBar3
-              : gradientBar4,
+          borderColor: idx === 0 ? gradientBar1 : idx === 1 ? gradientBar2 : idx === 2 ? gradientBar3 : '#047edf',
+          backgroundColor: idx === 0 ? gradientBar1 : idx === 1 ? gradientBar2 : idx === 2 ? gradientBar3 : '#047edf',
+          hoverBackgroundColor: idx === 0 ? gradientBar1 : idx === 1 ? gradientBar2 : idx === 2 ? gradientBar3 : '#047edf',
+          legendColor: idx === 0 ? gradientBar1 : idx === 1 ? gradientBar2 : idx === 2 ? gradientBar3 : '#047edf',
           pointRadius: 0,
           fill: false,
           borderWidth: 1,
@@ -442,6 +323,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+
     </div>
   );
 };
