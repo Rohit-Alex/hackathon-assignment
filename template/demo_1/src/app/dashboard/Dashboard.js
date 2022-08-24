@@ -203,6 +203,7 @@ const Dashboard = () => {
 
     } finally {
       setIsLoading(false)
+      setCardDetails(finalData)
       return finalData
     }
     
@@ -241,10 +242,10 @@ const Dashboard = () => {
         labels: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG'],
         datasets: data.map((e, idx) => ({
           label: e.cardTitle,
-          borderColor: idx === 0 ? gradientBar1 : idx === 1 ? gradientBar2 : gradientBar3,
-          backgroundColor: idx === 0 ? gradientBar1 : idx === 1 ? gradientBar2 : gradientBar3,
-          hoverBackgroundColor: idx === 0 ? gradientBar1 : idx === 1 ? gradientBar2 : gradientBar3,
-          legendColor: idx === 0 ? gradientBar1 : idx === 1 ? gradientBar2 : gradientBar3,
+          borderColor: idx === 0 ? gradientBar1 : idx === 1 ? gradientBar2 : idx === 2 ? gradientBar3 : "linear-gradient(to right, #090979, #019CAD)",
+          backgroundColor: idx === 0 ? gradientBar1 : idx === 1 ? gradientBar2 : idx === 2 ? gradientBar3 : "linear-gradient(to right, #090979, #019CAD)",
+          hoverBackgroundColor: idx === 0 ? gradientBar1 : idx === 1 ? gradientBar2 : idx === 2 ? gradientBar3 : "linear-gradient(to right, #090979, #019CAD)",
+          legendColor: idx === 0 ? gradientBar1 : idx === 1 ? gradientBar2 : idx === 2 ? gradientBar3 : "linear-gradient(to right, #090979, #019CAD)",
           pointRadius: 0,
           fill: false,
           borderWidth: 1,
@@ -311,7 +312,7 @@ const Dashboard = () => {
         
         {/* FIRST ROW  */}
         <div className="row">
-          {cardData.map(e => (
+          {cardDetails.map(e => (
             <div className="col-md-3 stretch-card grid-margin">
               
               <div className={`card ${e.additionalClass} card-img-holder text-white`}>
