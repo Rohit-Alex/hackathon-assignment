@@ -66,16 +66,16 @@ const ListItem = (props) => {
 const Dashboard = () => {
   const [startDate, setStartDate] = useState(new Date())
   const [visitSaleData, setVisitSaleData] = useState({})
-  const [visitSaleOptions, setVisitSaleOptions] = useState(defaultVisitScaleOptions)
+  const visitSaleOptions = defaultVisitScaleOptions
   const [trafficData, setTrafficData] = useState({})
-  const [trafficOptions, setTrafficOptions] = useState({
+  const trafficOptions = {
     responsive: true,
     animation: {
       animateScale: true,
       animateRotate: true
     },
     legend: false,
-  })
+  }
   const [todos, setTodos] = useState([
     {
       id: 1,
@@ -115,10 +115,10 @@ const Dashboard = () => {
     const todo = {...todos[id]};
     todo.isCompleted = event.target.checked;
 
-    const todos = [...todos];
-    todos[id] = todo;
+    const todosCloned = [...todos];
+    todosCloned[id] = todo;
 
-    setTodos(todos)
+    setTodos(todosCloned)
   }
 
   const handleChange = date => {
@@ -128,21 +128,21 @@ const Dashboard = () => {
   const addTodo =  (event) => {
       event.preventDefault();
 
-      const todos = [...todos];
-      todos.unshift({
+      const todosCloned = [...todos];
+    todosCloned.unshift({
           id: todos.length ? todos[todos.length - 1].id + 1 : 1,
           task: inputValue,
           isCompleted: false
           
       })
       setInputValue('')
-      setTodos(todos)
+    setTodos(todosCloned)
   }
 
   const removeTodo = (index) => {
-      const todos = [...todos];
-      todos.splice(index, 1);
-      setTodos(todos)
+      const todosCloned = [...todos];
+      todosCloned.splice(index, 1);
+      setTodos(todosCloned)
   }
 
   const inputChangeHandler = (event) => {
@@ -286,7 +286,7 @@ const Dashboard = () => {
     },
   ]
     return (
-      <div>
+      <div className='dashboard-container'>
         <div className="page-header">
           <h3 className="page-title">
             <span className="page-title-icon bg-gradient-primary text-white mr-2">
