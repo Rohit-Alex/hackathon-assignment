@@ -39,7 +39,7 @@ const AppRoutes = () => {
     return (
       <Suspense fallback={<Spinner/>}>
         <Switch>
-          <Route exact path="/dashboard" component={ Dashboard } />
+          <Route exact path="/" component={ Dashboard } />
 
 
           <Route path="/basic-ui/buttons" component={ Buttons } />
@@ -62,13 +62,13 @@ const AppRoutes = () => {
           <Route path="/user-pages/register-1" component={ Register1 } />
           <Route path="/user-pages/lockscreen" component={ Lockscreen } />
 
-          <Route path="/error-pages/error-404" component={ Error404 } />
           <Route path="/error-pages/error-500" component={ Error500 } />
 
           <Route path="/general-pages/blank-page" component={ BlankPage } />
 
 
-          <Redirect to="/dashboard" />
+          {/* <Redirect to="/dashboard" /> */}
+          <Route path="*" component={ Error404 } />
         </Switch>
       </Suspense>
     );

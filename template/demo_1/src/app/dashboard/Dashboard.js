@@ -287,8 +287,6 @@ const Dashboard = () => {
   ]
     return (
       <div>
-        <div className="proBanner">
-        </div>
         <div className="page-header">
           <h3 className="page-title">
             <span className="page-title-icon bg-gradient-primary text-white mr-2">
