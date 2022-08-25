@@ -80,13 +80,13 @@ const Sidebar = () => {
           className={location.pathname === "/" ? "nav-item active" : "nav-item"}
         >
           <Link className="nav-link" to="/">
-            <span className="menu-title">
-              Dashboard
-            </span>
+            <span className="menu-title">Dashboard</span>
             <i className="mdi mdi-home menu-icon"></i>
           </Link>
         </li>
-        <li className={isPathActive("/orders") ? "nav-item active" : "nav-item"}>
+        <li
+          className={isPathActive("/orders") ? "nav-item active" : "nav-item"}
+        >
           <div
             className={
               state.basicUiMenuOpen ? "nav-link menu-expanded" : "nav-link"
@@ -94,11 +94,9 @@ const Sidebar = () => {
             onClick={() => toggleMenuState("basicUiMenuOpen")}
             data-toggle="collapse"
           >
-            <span className="menu-title">
-              Orders
-            </span>
+            <span className="menu-title">Orders</span>
             <i className="menu-arrow"></i>
-            <i className="mdi mdi-crosshairs-gps menu-icon"></i>
+            <i className="mdi mdi-format-list-bulleted menu-icon"></i>
           </div>
           <Collapse in={state.basicUiMenuOpen}>
             <ul className="nav flex-column sub-menu">
@@ -130,9 +128,7 @@ const Sidebar = () => {
             onClick={() => toggleMenuState("formElementsMenuOpen")}
             data-toggle="collapse"
           >
-            <span className="menu-title">
-              Payments
-            </span>
+            <span className="menu-title">Payments</span>
             <i className="menu-arrow"></i>
             <i className="mdi mdi-format-list-bulleted menu-icon"></i>
           </div>
@@ -164,9 +160,7 @@ const Sidebar = () => {
             onClick={() => toggleMenuState("tablesMenuOpen")}
             data-toggle="collapse"
           >
-            <span className="menu-title">
-              Logistics
-            </span>
+            <span className="menu-title">Logistics</span>
             <i className="menu-arrow"></i>
             <i className="mdi mdi-table-large menu-icon"></i>
           </div>
@@ -196,9 +190,7 @@ const Sidebar = () => {
             onClick={() => toggleMenuState("iconsMenuOpen")}
             data-toggle="collapse"
           >
-            <span className="menu-title">
-              Financial
-            </span>
+            <span className="menu-title">Financial</span>
             <i className="menu-arrow"></i>
             <i className="mdi mdi-contacts menu-icon"></i>
           </div>
