@@ -51,18 +51,9 @@ const Sidebar = () => {
     });
 
     const dropdownPaths = [
-      { path: "/apps", state: "appsMenuOpen" },
       { path: "/orders", state: "basicUiMenuOpen" },
-      { path: "/advanced-ui", state: "advancedUiMenuOpen" },
-      { path: "/form-elements", state: "formElementsMenuOpen" },
-      { path: "/tables", state: "tablesMenuOpen" },
-      { path: "/maps", state: "mapsMenuOpen" },
-      { path: "/icons", state: "iconsMenuOpen" },
-      { path: "/charts", state: "chartsMenuOpen" },
-      { path: "/user-pages", state: "userPagesMenuOpen" },
-      { path: "/error-pages", state: "errorPagesMenuOpen" },
-      { path: "/general-pages", state: "generalPagesMenuOpen" },
-      { path: "/ecommerce", state: "ecommercePagesMenuOpen" },
+      { path: "/payments", state: "formElementsMenuOpen" },
+      { path: "/logistics", state: "tablesMenuOpen" },
     ];
 
     dropdownPaths.forEach((obj) => {
@@ -90,33 +81,15 @@ const Sidebar = () => {
           <Collapse in={state.basicUiMenuOpen}>
             <ul className="nav flex-column sub-menu">
               <li className="nav-item">
-                {" "}
-                <Link
-                  className={
-                    isPathActive("/orders/1p_3p")
-                      ? "nav-link active"
-                      : "nav-link"
-                  }
-                  to="/orders/1p_3p"
-                >
+                <Link className={isPathActive("/orders/1p_3p") ? "nav-link active" : "nav-link"} to="/orders/1p_3p">
                   1P & 3P Orders
                 </Link>
               </li>
             </ul>
           </Collapse>
         </li>
-        <li
-          className={
-            isPathActive("/form-elements") ? "nav-item active" : "nav-item"
-          }
-        >
-          <div
-            className={
-              state.formElementsMenuOpen ? "nav-link menu-expanded" : "nav-link"
-            }
-            onClick={() => toggleMenuState("formElementsMenuOpen")}
-            data-toggle="collapse"
-          >
+        <li className={ isPathActive("/payments") ? "nav-item active" : "nav-item"}>
+          <div className={state.formElementsMenuOpen ? "nav-link menu-expanded" : "nav-link"} onClick={() => toggleMenuState("formElementsMenuOpen")} data-toggle="collapse">
             <span className="menu-title">Payments</span>
             <i className="menu-arrow"></i>
             <i className="mdi mdi-format-list-bulleted menu-icon"></i>
@@ -124,23 +97,35 @@ const Sidebar = () => {
           <Collapse in={state.formElementsMenuOpen}>
             <ul className="nav flex-column sub-menu">
               <li className="nav-item">
-                {" "}
-                <Link
-                  className={
-                    isPathActive("/form-elements/basic-elements")
-                      ? "nav-link active"
-                      : "nav-link"
-                  }
-                  to="/form-elements/basic-elements"
-                >
-                  1P
+                <Link className={ isPathActive("/payments/CMR") ? "nav-link active" : "nav-link"} to="/payments/CMR">
+                  CMR
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className={isPathActive("/payments/FPAY") ? "nav-link active" : "nav-link"} to="/payments/FPAY">
+                  FPAY
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className={isPathActive("/payments/CREDIT") ? "nav-link active" : "nav-link"} to="/payments/CREDIT">
+                  CREDIT
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className={isPathActive("/payments/DEBIT") ? "nav-link active" : "nav-link"} to="/payments/DEBIT">
+                  DEBIT
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className={isPathActive("/payments/GIFT_CARD") ? "nav-link active" : "nav-link"} to="/payments/GIFT_CARD">
+                  GIFT CARD
                 </Link>
               </li>
             </ul>
           </Collapse>
         </li>
         <li
-          className={isPathActive("/tables") ? "nav-item active" : "nav-item"}
+          className={isPathActive("/logistics") ? "nav-item active" : "nav-item"}
         >
           <div
             className={
@@ -184,33 +169,11 @@ const Sidebar = () => {
             </ul>
           </Collapse>
         </li>
-        <li className={isPathActive("/icons") ? "nav-item active" : "nav-item"}>
-          <div
-            className={
-              state.iconsMenuOpen ? "nav-link menu-expanded" : "nav-link"
-            }
-            onClick={() => toggleMenuState("iconsMenuOpen")}
-            data-toggle="collapse"
-          >
+        <li className={isPathActive("/financial") ? "nav-item active" : "nav-item"}>
+          <Link className="nav-link" to="/financial">
             <span className="menu-title">Financial</span>
-            <i className="menu-arrow"></i>
             <i className="mdi mdi-contacts menu-icon"></i>
-          </div>
-          <Collapse in={state.iconsMenuOpen}>
-            <ul className="nav flex-column sub-menu">
-              <li className="nav-item">
-                {" "}
-                <Link
-                  className={
-                    isPathActive("/icons/mdi") ? "nav-link active" : "nav-link"
-                  }
-                  to="/icons/mdi"
-                >
-                  1P
-                </Link>
-              </li>
-            </ul>
-          </Collapse>
+          </Link>
         </li>
       </ul>
     </nav>
