@@ -2,11 +2,12 @@ import { Spin } from "antd";
 import React, { Suspense, lazy } from "react";
 import { Switch, Route } from "react-router-dom";
 
-import EventDetails from "./basic-ui/EventDetails";
+
+import EventDetails from "./basic-ui/OrderFailedDetails";
 
 const Dashboard = lazy(() => import("./dashboard/Dashboard"));
 
-const OrderDetails = lazy(() => import("./basic-ui/OrderDetails"));
+const OrderDetails = lazy(() => import("./basic-ui/EventDetails"));
 
 const Error404 = lazy(() => import("./error-pages/Error404"));
 

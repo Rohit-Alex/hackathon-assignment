@@ -1,14 +1,14 @@
-import { Breadcrumb } from "antd";
 import React, { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
-import { columns, demoData } from "../../constants";
-import TableLayout from "../Table/Table";
-import { getTodosList } from "./ApiCalls";
+
+import { Breadcrumb, Spin, Timeline } from "antd";
 import "./EventDetails.scss";
-import backarrow from "../../assets/images/backarrow.svg";
+import { useHistory } from "react-router-dom";
+import { eventFlowDummyData } from "../../constants";
 import { Button } from "react-bootstrap";
+import { getEventList } from "./ApiCalls";
+import { camelToSnakeCase, firstLetterCapital } from "../../utils";
+
 const EventDetails = () => {
-  const { eventId = "" } = useParams();
   const [apiData, setApiData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const history = useHistory();
@@ -16,73 +16,90 @@ const EventDetails = () => {
   const mountFunction = async () => {
     let response = [];
     try {
-      const data = await getTodosList();
-      setApiData(data);
-      response[0] = data;
+      // const { data: { flowWithCounts = [] } = {} } = await getEventList();
+      const { data: { flowWithCounts = [] } = {} } = eventFlowDummyData;
+      setApiData(flowWithCounts);
+      response[0] = flowWithCounts;
     } catch (err) {
       response[1] = err;
     } finally {
-      setApiData(response);
       setIsLoading(false);
       return response;
     }
   };
+
   useEffect(() => {
     mountFunction();
   }, []);
 
   return (
-    <div className="event-details-container">
+    <div className="Orders-details">
       <div className="page-header back-icn-ctn ">
         <div className="header-left-part">
-          <img
-            className="back-btn-icon"
+          <span
+            className="mdi mdi-arrow-left back-arrow"
             onClick={() => {
               history.goBack();
             }}
-            src={backarrow}
-            alt="back"
           />
-          <h4 className="back-div-header">{eventId}</h4>
+          <h4 className="back-div-header" style={{ color: "" }}>
+            1P & 3P Orders Flow
+          </h4>
         </div>
         <div className="header-right-part">
           <Breadcrumb separator=">" className="bread-crumb">
             <Breadcrumb.Item onClick={() => history.push("/")}>
               Dashboard
             </Breadcrumb.Item>
-            <Breadcrumb.Item onClick={() => history.goBack()}>
-              Orders
-            </Breadcrumb.Item>
-            <Breadcrumb.Item>1p_3p</Breadcrumb.Item>
+            <Breadcrumb.Item>1P & 3P Order</Breadcrumb.Item>
           </Breadcrumb>
         </div>
       </div>
-
-      <div className="col-12 grid-margin stretch-card">
-        <div className="card">
-          <div className="card-body">
-            <div className="header-info">
-              <span>
-                <h4 className="card-title order-failed">Orders Failed</h4>
-              </span>
-              <span>
-                <Button className="btn-inverse-danger ">Refresh</Button>
-              </span>
-            </div>
-            <hr />
-            <div className="table-container">
-              <TableLayout
-                className="table-info"
-                loading={isLoading}
-                data={demoData}
-                columns={columns}
-                pagination
-              />
+      {apiData.length ? (
+        <div className="row">
+          <div className="col-12 grid-margin stretch-card">
+            <div className="card">
+              <div className="card-body">
+                <div className="header-info">
+                  <span>
+                    <h4 className="card-title event-details">Event Details</h4>
+                  </span>
+                  <span>
+                    <Button onClick={() => mountFunction()}>Refresh</Button>
+                  </span>
+                </div>
+                <hr />
+                <div className="template-demo">
+                  <Timeline>
+                    {apiData.map((e, idx) => {
+                      const updatedText = camelToSnakeCase(firstLetterCapital(e.stage))
+                      return (
+                      <React.Fragment key={idx}>
+                        <Timeline.Item
+                          color="green"
+                          onClick={() => {
+                            // history.push(`/orderDetails?eventId=${e.eventList}`)
+                            history.push(`/orderDetails/${updatedText}`);
+                          }}
+                        >
+                          <button className="btn-inverse-primary button-list">
+                              <span>{updatedText}</span>
+                            <span className="badge badge-inverse-primary badge-pill numbers-id">
+                              {e.count}
+                            </span>
+                          </button>
+                        </Timeline.Item>
+                      </React.Fragment>
+                    )})}
+                  </Timeline>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      ) : <Spin />}
     </div>
   );
 };
+
 export default EventDetails;
