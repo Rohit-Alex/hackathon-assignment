@@ -18,35 +18,6 @@ const createAxiosResponseInterceptor = () => {
       }
       axios.interceptors.response.eject(interceptor);
       return Promise.reject(error);
-      /*eslint-disable */
-      // return new Promise((reso, reje) => {
-      //     window.addEventListener("message", function (e) {
-      //         isRecivedEvent = true;
-      //         if (
-      //             typeof e.data === "string" &&
-      //             !e.data.includes("tagged") &&
-      //             !e.data.includes("resize") &&
-      //             e.data !== ""
-      //         ) {
-      //             cookies.set("TOKEN", e.data);
-      //             return reso(
-      //                 new Promise((resolve, reject) => {
-      //                     axios.interceptors.response.eject(interceptor);
-      //                     axios.interceptors.response.eject(interceptor);
-      //                     error.response.config.headers["token"] = util.accessToken();
-      //                     error.response.config.headers["Authorization"] =
-      //                         "Bearer " + util.accessToken();
-      //                     window.GlobalFunctions.consoleLog(
-      //                         error.response.config,
-      //                         "error.response.config"
-      //                     );
-      //                     return resolve(axios(error.response.config));
-      //                 })
-      //             );
-      //         }
-      //     });
-      // });
-      /* eslint-enable */
     }
   );
 };
@@ -121,3 +92,6 @@ export const notificationHandler = ({
     placement,
   });
 };
+
+export const camelToSnakeCase = (str) =>
+  str.replace(/[A-Z]/g, (letter) => ` ${letter.toUpperCase()}`);
