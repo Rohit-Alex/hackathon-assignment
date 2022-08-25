@@ -50,7 +50,7 @@ const Navbar = () => {
         </div>
         <ul className="navbar-nav navbar-nav-right">
           <li className="nav-item nav-profile">
-            <Dropdown alignRight>
+            <Dropdown>
               <Dropdown.Toggle className="nav-link">
                 <div className="nav-profile-img">
                   <img
@@ -85,7 +85,7 @@ const Navbar = () => {
             </Dropdown>
           </li>
           <li className="nav-item">
-            <Dropdown alignRight>
+            <Dropdown>
               <Dropdown.Toggle className="nav-link count-indicator">
                 <i className="mdi mdi-email-outline"></i>
                 <span className="count-symbol bg-warning"></span>
@@ -166,7 +166,7 @@ const Navbar = () => {
             </Dropdown>
           </li>
           <li className="nav-item">
-            <Dropdown alignRight>
+            <Dropdown>
               <Dropdown.Toggle className="nav-link count-indicator">
                 <i className="mdi mdi-bell-outline"></i>
                 <span className="count-symbol bg-danger"></span>

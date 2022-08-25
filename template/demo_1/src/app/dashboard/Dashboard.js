@@ -115,9 +115,9 @@ const Dashboard = () => {
       setCardDetails(finalData);
     } catch (err) {
     } finally {
-      setIsLoading(false)
-      setCardDetails(finalData)
-      return finalData
+      setIsLoading(false);
+      setCardDetails(finalData);
+      return finalData;
     }
   };
 
@@ -125,11 +125,9 @@ const Dashboard = () => {
     const data = await getApiData();
     let ctx = document.getElementById("visitSaleChart")?.getContext("2d");
     if (ctx) {
-
       let gradientBar1 = ctx.createLinearGradient(0, 0, 0, 181);
       gradientBar1.addColorStop(0, "#ffbf96");
       gradientBar1.addColorStop(1, "#fe7096");
-
 
       let gradientBar2 = ctx.createLinearGradient(0, 0, 0, 360);
       gradientBar2.addColorStop(0, "#90caf9");
@@ -163,10 +161,38 @@ const Dashboard = () => {
         labels: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG"],
         datasets: data.map((e, idx) => ({
           label: e.cardTitle,
-          borderColor: idx === 0 ? gradientBar1 : idx === 1 ? gradientBar2 : idx === 2 ? gradientBar3 : '#047edf',
-          backgroundColor: idx === 0 ? gradientBar1 : idx === 1 ? gradientBar2 : idx === 2 ? gradientBar3 : '#047edf',
-          hoverBackgroundColor: idx === 0 ? gradientBar1 : idx === 1 ? gradientBar2 : idx === 2 ? gradientBar3 : '#047edf',
-          legendColor: idx === 0 ? gradientBar1 : idx === 1 ? gradientBar2 : idx === 2 ? gradientBar3 : '#047edf',
+          borderColor:
+            idx === 0
+              ? gradientBar1
+              : idx === 1
+              ? gradientBar2
+              : idx === 2
+              ? gradientBar3
+              : "#047edf",
+          backgroundColor:
+            idx === 0
+              ? gradientBar1
+              : idx === 1
+              ? gradientBar2
+              : idx === 2
+              ? gradientBar3
+              : "#047edf",
+          hoverBackgroundColor:
+            idx === 0
+              ? gradientBar1
+              : idx === 1
+              ? gradientBar2
+              : idx === 2
+              ? gradientBar3
+              : "#047edf",
+          legendColor:
+            idx === 0
+              ? gradientBar1
+              : idx === 1
+              ? gradientBar2
+              : idx === 2
+              ? gradientBar3
+              : "#047edf",
           pointRadius: 0,
           fill: false,
           borderWidth: 1,
@@ -238,8 +264,8 @@ const Dashboard = () => {
 
       {/* FIRST ROW  */}
       <div className="row">
-        {cardData.map((e) => (
-          <div className="col-md-3 stretch-card grid-margin">
+        {cardData.map((e, idx) => (
+          <div className="col-md-3 stretch-card grid-margin" key={idx}>
             <div
               className={`card ${e.additionalClass} card-img-holder text-white`}
             >
@@ -276,8 +302,8 @@ const Dashboard = () => {
                   className="rounded-legend legend-horizontal legend-top-right float-right"
                 >
                   <ul>
-                    {cardDetails.map((e) => (
-                      <li>
+                    {cardDetails.map((e, idx) => (
+                      <li key={idx}>
                         <span
                           className={`legend-dots ${e.additionalClass}`}
                         ></span>
@@ -296,7 +322,6 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-  
 
         <div className="col-md-5 grid-margin stretch-card">
           <div className="card">
@@ -308,8 +333,8 @@ const Dashboard = () => {
                 className="rounded-legend legend-vertical legend-bottom-left pt-4"
               >
                 <ul>
-                  {cardDetails.map((e) => (
-                    <li>
+                  {cardDetails.map((e, idx) => (
+                    <li key={idx}>
                       <span
                         className={`legend-dots ${e.additionalClass}`}
                       ></span>
@@ -323,10 +348,8 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-
     </div>
   );
 };
-
 
 export default Dashboard;

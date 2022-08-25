@@ -1,37 +1,59 @@
-import { Table } from 'antd'
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { columns, demoData } from '../../constants'
-import { notificationHandler } from '../../utils'
-import { getTodosList } from './ApiCalls'
-const EventDetails = () => {
-    const { eventId = '' } = useParams()
-    const [apiData, setApiData] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
+import { Table } from "antd";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { columns, demoData } from "../../constants";
+import { notificationHandler } from "../../utils";
+import TableLayout from "../Table/Table";
+import { getTodosList } from "./ApiCalls";
+import "./EventDetails.scss";
 
-    const mountFunction = async () => {
-        notificationHandler({ message: 'Hi, MG', description: 'Leaving so soon', key: 'getTodo' })
-        let response = []
-        try {
-            const data = await getTodosList()
-            setApiData(data)
-            response[0] = data
-        } catch (err) {
-            response[1] = err
-        } finally {
-            setApiData(response)
-            setIsLoading(false)
-            return response
-        }
+const EventDetails = () => {
+  const { eventId = "" } = useParams();
+  const [apiData, setApiData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const mountFunction = async () => {
+    notificationHandler({
+      message: "Hi, MG",
+      description: "Leaving so soon",
+      key: "getTodo",
+    });
+    let response = [];
+    try {
+      const data = await getTodosList();
+      setApiData(data);
+      response[0] = data;
+    } catch (err) {
+      response[1] = err;
+    } finally {
+      setApiData(response);
+      setIsLoading(false);
+      return response;
     }
-    useEffect(() => {
-        mountFunction()
-    }, [])
-    return (
-        <div className='event-details-container'>
-            <h4>{eventId}</h4>
-            <Table loading={isLoading} dataSource={demoData} columns={columns} pagination />
+  };
+  useEffect(() => {
+    mountFunction();
+  }, []);
+
+  return (
+    <div className="event-details-container">
+      <h4 className=" page-header">{eventId}</h4>
+      <div className="col-12 grid-margin stretch-card">
+        <div className="card">
+          <div className="card-body">
+            <div className="table-container">
+              <TableLayout
+                className="table-info"
+                loading={isLoading}
+                data={demoData}
+                columns={columns}
+                pagination
+              />
+            </div>
+          </div>
         </div>
-    )
-}
-export default EventDetails
+      </div>
+    </div>
+  );
+};
+export default EventDetails;
