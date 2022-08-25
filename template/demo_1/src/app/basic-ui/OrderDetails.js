@@ -1,23 +1,20 @@
 import React from "react";
 import { Timeline } from "antd";
-import { Data } from "./getCoulmn";
-import "./button.scss";
+import "./OrderDetails.scss";
 import { useHistory } from "react-router-dom";
+import { Data } from "../../constants";
 
-const Buttons = () => {
-  const history = useHistory()
+const OrderDetails = () => {
+  const history = useHistory();
+
   return (
     <div className="Orders-details">
       <div className="page-header ">
         <h3 className="page-title">1P Orders</h3>
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb">
-            <li className="breadcrumb-item">
-                Orders
-            </li>
-            <li className="breadcrumb-item active">
-              1p and 3P Orders
-            </li>
+            <li className="breadcrumb-item">Orders</li>
+            <li className="breadcrumb-item active">1p and 3P Orders</li>
           </ol>
         </nav>
       </div>
@@ -36,14 +33,16 @@ const Buttons = () => {
                 <Timeline>
                   {Data.map((e, idx) => (
                     <React.Fragment key={idx}>
-                      <Timeline.Item color="green" onClick={() => { 
-                        // history.push(`/orderDetails?eventId=${e.eventList}`)
-                        history.push(`/orderDetails/${e.eventList}`)
-
-                        }}>
+                      <Timeline.Item
+                        color="green"
+                        onClick={() => {
+                          // history.push(`/orderDetails?eventId=${e.eventList}`)
+                          history.push(`/orderDetails/${e.eventList}`);
+                        }}
+                      >
                         <button className="btn-inverse-primary button-list">
                           <span>{e.eventList}</span>
-                          <span class="badge badge-inverse-primary badge-pill numbers-id">
+                          <span className="badge badge-inverse-primary badge-pill numbers-id">
                             {e.failedEvents}
                           </span>
                         </button>
@@ -60,4 +59,4 @@ const Buttons = () => {
   );
 };
 
-export default Buttons;
+export default OrderDetails;
