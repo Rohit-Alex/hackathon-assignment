@@ -73,7 +73,11 @@ export const updateStatus = () => {
     //     reject(err || {});
     //   });
     setTimeout(()=>{
-      resolve({status: 'Success'})
+      resolve({
+        "data": {
+          "orderNumber": "238924542",
+          "resolution": "Payment Refunded"
+        }})
     }, 500)
   });
 };

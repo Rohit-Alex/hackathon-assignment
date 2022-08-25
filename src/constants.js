@@ -1,5 +1,9 @@
 import { Button, Tag } from "antd";
 import React from "react";
+import {
+  SyncOutlined,
+  CheckCircleOutlined,
+} from '@ant-design/icons';
 export const columns = [
   {
     title: "Order Id",
@@ -191,7 +195,27 @@ export const cardData = [
   },
 ];
 
-export const columnsForMultiSelect = [
+export const dummmyData1 = [
+  {
+    "id": "822e0abe-247d-11ed-94a5-eea5670d4c75",
+    "orderNumber": "238924542",
+    "workflowType": "OrderFlow",
+    "currentStage": "orderCreated",
+    "previousStage": "paymentChargeSuccess",
+    "errorFlag": true,
+    "createdAd": "2022-08-25T19:24:59.169376+05:30"
+  },
+  {
+    "id": "822e71ca-247d-11ed-94a5-eea5670d4c75",
+    "orderNumber": "590284781",
+    "workflowType": "OrderFlow",
+    "currentStage": "orderCreated",
+    "previousStage": "paymentChargeSuccess",
+    "errorFlag": true,
+    "createdAd": "2022-08-25T19:24:59.169376+05:30",
+  }
+]
+export const columnsForMultiSelect = (clickHandler) => [
   {
     title: "Order Id",
     dataIndex: "id",
@@ -214,7 +238,11 @@ export const columnsForMultiSelect = [
   },
   {
     title: "Status",
-    dataIndex: "status",
+    dataIndex: "resolution",
+    render: (_, record) => {
+      if (!record?.resolution) return null
+      return <Tag icon={<CheckCircleOutlined />} color="success">{record?.resolution}</Tag>
+    }
   },
   {
     title: "Action",
@@ -225,6 +253,9 @@ export const columnsForMultiSelect = [
           color: "#703fa0",
           fontSize: "13px",
           border: "none",
+        }}
+        onClick={() => {
+          clickHandler(record)
         }}
       >
         Click

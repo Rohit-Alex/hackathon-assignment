@@ -53,7 +53,7 @@ const EventDetails = () => {
           </Breadcrumb>
         </div>
       </div>
-      {apiData.length ? (
+      {!isLoading ? (
         <div className="row">
           <div className="col-12 grid-margin stretch-card">
             <div className="card">
@@ -98,7 +98,7 @@ const EventDetails = () => {
           </div>
         </div>
       ) : (
-        ""
+        <Spin />
       )}
     </div>
   );
