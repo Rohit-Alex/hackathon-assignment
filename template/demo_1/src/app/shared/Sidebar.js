@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, withRouter } from "react-router-dom";
 import { Collapse } from "react-bootstrap";
-import { Trans } from "react-i18next";
 
 const Sidebar = () => {
   const [state, setState] = useState({});

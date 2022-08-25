@@ -97,3 +97,54 @@ export const Data = [
     number: 9,
   },
 ];
+
+export const dummyOrderFlowData = {
+  "data": {
+    "flowWithCounts": [
+      {
+        "stage": "paymentChargeSuccess",
+        "count": 2
+      },
+      {
+        "stage": "orderCreated",
+        "count": 2
+      },
+      {
+        "stage": "sellerOrderInitiated",
+        "count": 0
+      },
+      {
+        "stage": "reservationConfirmed",
+        "count": 0
+      },
+      {
+        "stage": "paymentStatusUpdate",
+        "count": 0
+      },
+      {
+        "stage": "sellerOrderCreated",
+        "count": 0
+      },
+      {
+        "stage": "1PCustomerOrderCreated",
+        "count": 0
+      },
+      {
+        "stage": "1PCustomerOrderAcknowledged",
+        "count": 0
+      },
+      {
+        "stage": "1PShipmentStatusUpdate",
+        "count": 0
+      },
+      {
+        "stage": "sellerShipmentStatusChanged",
+        "count": 0
+      },
+      {
+        "stage": "sellerOrderLineDelivered",
+        "count": 0
+      }
+    ]
+  }
+}

@@ -2,8 +2,7 @@ import React from 'react'
 import { Skeleton } from "antd";
 
 export const CardShimmerEffect = () => (
-    <div style={{ height: '160px', marginRight: 20, width: '365px' }}>
-    <Skeleton.Button active
+    <Skeleton.Input active className='card-shimmer'
             style={{
                 // height: '100px',
                 // width: '100px',
@@ -12,5 +11,4 @@ export const CardShimmerEffect = () => (
                 display: "block",
             }}
         />
-    </div>
 )

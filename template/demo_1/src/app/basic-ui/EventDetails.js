@@ -2,7 +2,6 @@ import { Breadcrumb } from "antd";
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { columns, demoData } from "../../constants";
-import { notificationHandler } from "../../utils";
 import TableLayout from "../Table/Table";
 import { getTodosList } from "./ApiCalls";
 import "./EventDetails.scss";
@@ -15,11 +14,6 @@ const EventDetails = () => {
   const history = useHistory();
 
   const mountFunction = async () => {
-    notificationHandler({
-      message: "Hi, MG",
-      description: "Leaving so soon",
-      key: "getTodo",
-    });
     let response = [];
     try {
       const data = await getTodosList();

@@ -121,3 +121,6 @@ export const notificationHandler = ({
     placement,
   });
 };
+
+export const camelToSnakeCase = str => str.replace(/[A-Z]/g, letter => ` ${letter.toLowerCase()}`);
+export const firstLetterCapital = str => str.charAt(0).toUpperCase() + str.slice(1)

@@ -1,7 +1,7 @@
+import { Spin } from "antd";
 import React, { Suspense, lazy } from "react";
 import { Switch, Route } from "react-router-dom";
 
-import Spinner from "../app/shared/Spinner";
 import EventDetails from "./basic-ui/EventDetails";
 
 const Dashboard = lazy(() => import("./dashboard/Dashboard"));
@@ -12,7 +12,7 @@ const Error404 = lazy(() => import("./error-pages/Error404"));
 
 const AppRoutes = () => {
   return (
-    <Suspense fallback={<Spinner />}>
+    <Suspense fallback={<Spin />}>
       <Switch>
         <Route exact path="/" component={Dashboard} />
         <Route exact path="/orders/1p_3p" component={OrderDetails} />

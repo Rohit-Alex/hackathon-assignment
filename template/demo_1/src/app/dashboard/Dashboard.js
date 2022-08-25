@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Bar, Doughnut } from "react-chartjs-2";
+import { CardShimmerEffect } from "../Shimmer/CardShimmer";
+import './dashboard.scss'
 
 const defaultVisitScaleOptions = {
   scales: {
@@ -274,6 +276,7 @@ const Dashboard = () => {
       <div className="row">
         {cardData.map((e, idx) => (
           <div className="col-md-3 stretch-card grid-margin" key={idx}>
+            <CardShimmerEffect />
             <div
               className={`card ${e.additionalClass} card-img-holder text-white`}
             >
