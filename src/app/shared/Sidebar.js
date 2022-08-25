@@ -51,9 +51,9 @@ const Sidebar = () => {
     });
 
     const dropdownPaths = [
-      { path: "/orders", state: "basicUiMenuOpen" },
-      { path: "/payments", state: "formElementsMenuOpen" },
-      { path: "/logistics", state: "tablesMenuOpen" },
+      { path: "/orders", state: "orderMenuOpen" },
+      { path: "/payments", state: "paymentsMenuOpen" },
+      { path: "/logistics", state: "logisticsMenuOpen" },
     ];
 
     dropdownPaths.forEach((obj) => {
@@ -79,16 +79,16 @@ const Sidebar = () => {
         >
           <div
             className={
-              state.basicUiMenuOpen ? "nav-link menu-expanded" : "nav-link"
+              state.orderMenuOpen ? "nav-link menu-expanded" : "nav-link"
             }
-            onClick={() => toggleMenuState("basicUiMenuOpen")}
+            onClick={() => toggleMenuState("orderMenuOpen")}
             data-toggle="collapse"
           >
             <span className="menu-title">Orders</span>
             <i className="menu-arrow"></i>
             <i className="mdi mdi-format-list-bulleted menu-icon"></i>
           </div>
-          <Collapse in={state.basicUiMenuOpen}>
+          <Collapse in={state.orderMenuOpen}>
             <ul className="nav flex-column sub-menu">
               <li className="nav-item">
                 <Link
@@ -110,16 +110,16 @@ const Sidebar = () => {
         >
           <div
             className={
-              state.formElementsMenuOpen ? "nav-link menu-expanded" : "nav-link"
+              state.paymentsMenuOpen ? "nav-link menu-expanded" : "nav-link"
             }
-            onClick={() => toggleMenuState("formElementsMenuOpen")}
+            onClick={() => toggleMenuState("paymentsMenuOpen")}
             data-toggle="collapse"
           >
             <span className="menu-title">Payments</span>
             <i className="menu-arrow"></i>
             <i className="mdi mdi-format-list-bulleted menu-icon"></i>
           </div>
-          <Collapse in={state.formElementsMenuOpen}>
+          <Collapse in={state.paymentsMenuOpen}>
             <ul className="nav flex-column sub-menu">
               <li className="nav-item">
                 <Link
@@ -154,7 +154,7 @@ const Sidebar = () => {
                   }
                   to="/payments/CREDIT"
                 >
-                  Credit
+                  CREDIT
                 </Link>
               </li>
               <li className="nav-item">
@@ -166,7 +166,7 @@ const Sidebar = () => {
                   }
                   to="/payments/DEBIT"
                 >
-                  Debit
+                  DEBIT
                 </Link>
               </li>
               <li className="nav-item">
@@ -178,7 +178,7 @@ const Sidebar = () => {
                   }
                   to="/payments/GIFT_CARD"
                 >
-                  GiftCard
+                  GIFT CARD
                 </Link>
               </li>
             </ul>
@@ -191,16 +191,16 @@ const Sidebar = () => {
         >
           <div
             className={
-              state.tablesMenuOpen ? "nav-link menu-expanded" : "nav-link"
+              state.logisticsMenuOpen ? "nav-link menu-expanded" : "nav-link"
             }
-            onClick={() => toggleMenuState("tablesMenuOpen")}
+            onClick={() => toggleMenuState("logisticsMenuOpen")}
             data-toggle="collapse"
           >
             <span className="menu-title">Logistics</span>
             <i className="menu-arrow"></i>
             <i className="mdi mdi-table-large menu-icon"></i>
           </div>
-          <Collapse in={state.tablesMenuOpen}>
+          <Collapse in={state.logisticsMenuOpen}>
             <ul className="nav flex-column sub-menu">
               <li className="nav-item">
                 {" "}

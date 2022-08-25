@@ -99,7 +99,7 @@ const EventDetails = () => {
           </div>
         </div>
       ) : (
-        <Spin />
+        ""
       )}
     </div>
   );
