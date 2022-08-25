@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Bar, Doughnut } from "react-chartjs-2";
+import { getDashboardData } from "../basic-ui/ApiCalls";
 import { CardShimmerEffect } from "../Shimmer/CardShimmer";
 import './dashboard.scss'
 
@@ -49,48 +50,6 @@ const defaultVisitScaleOptions = {
   },
 };
 
-const cardData = [
-  {
-    imgSrc: "../../assets/images/dashboard/circle.svg",
-    cardTitle: "Orders",
-    cardValue: "100",
-    cardStats: "Increased by 60%",
-    label: "Orders",
-    graphData: [20, 40, 15, 35, 25, 50, 30],
-    additionalClass: "bg-gradient-danger",
-    value: "50%",
-  },
-  {
-    imgSrc: "../../assets/images/dashboard/circle.svg",
-    cardTitle: "Payments",
-    cardValue: "44",
-    cardStats: "Increased by 20%",
-    label: "Payments",
-    graphData: [50, 20, 25, 35, 20, 40, 30],
-    additionalClass: "bg-gradient-info",
-    value: "10%",
-  },
-  {
-    imgSrc: "../../assets/images/dashboard/circle.svg",
-    cardTitle: "Logistics",
-    cardValue: "95",
-    cardStats: "Decreased by 10%",
-    label: "Logistics",
-    graphData: [10, 10, 5, 25, 25, 50, 10],
-    additionalClass: "bg-gradient-success",
-    value: "20%",
-  },
-  {
-    imgSrc: "../../assets/images/dashboard/circle.svg",
-    cardTitle: "Financial",
-    cardValue: "190",
-    cardStats: "Increased by 12%",
-    label: "Financial",
-    graphData: [80, 40, 15, 55, 25, 10, 30],
-    additionalClass: "bg-gradient-primary",
-    value: "40%",
-  },
-];
 
 const Dashboard = () => {
   const [cardDetails, setCardDetails] = useState([]);
@@ -107,18 +66,18 @@ const Dashboard = () => {
     legend: false,
   };
 
-  const apiCall = () =>
-    new Promise((resolve) => setTimeout(resolve(cardData), 300));
+  
   const getApiData = async () => {
     setIsLoading(true);
     let finalData = [];
     try {
-      finalData = await apiCall();
-      setCardDetails(finalData);
+      const data = await getDashboardData();
+      setCardDetails(data);
+      finalData[0] = data
     } catch (err) {
+      finalData[1] = err
     } finally {
       setIsLoading(false);
-      setCardDetails(finalData);
       return finalData;
     }
   };
@@ -169,7 +128,7 @@ const Dashboard = () => {
           "SATURDAY",
           "SUNDAY",
         ],
-        datasets: data.map((e, idx) => ({
+        datasets: data?.[0].map((e, idx) => ({
           label: e.cardTitle,
           borderColor:
             idx === 0
@@ -274,7 +233,7 @@ const Dashboard = () => {
 
       {/* FIRST ROW  */}
       <div className="row">
-        {cardData.map((e, idx) => (
+        {cardDetails.length && cardDetails.map((e, idx) => (
           <div className="col-md-3 stretch-card grid-margin" key={idx}>
             {/* <CardShimmerEffect /> */}
             <div
@@ -302,6 +261,7 @@ const Dashboard = () => {
       </div>
 
       {/* SECOND ROW  */}
+      {cardDetails.length ? (
       <div className="row">
         <div className="col-md-7 grid-margin stretch-card">
           <div className="card">
@@ -313,7 +273,7 @@ const Dashboard = () => {
                   className="rounded-legend legend-horizontal legend-top-right float-right"
                 >
                   <ul>
-                    {cardDetails.map((e, idx) => (
+                    {cardDetails.length && cardDetails.map((e, idx) => (
                       <li key={idx}>
                         <span
                           className={`legend-dots ${e.additionalClass}`}
@@ -359,6 +319,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+      ) : null}
     </div>
   );
 };

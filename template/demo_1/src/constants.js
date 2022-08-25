@@ -149,3 +149,60 @@ export const eventFlowDummyData = {
   },
 };
 
+export const cardData = [
+  {
+    imgSrc: "../../assets/images/dashboard/circle.svg",
+    cardTitle: "Orders",
+    cardValue: "100",
+    cardStats: "Increased by 60%",
+    label: "Orders",
+    graphData: [20, 40, 15, 35, 25, 50, 30],
+    additionalClass: "bg-gradient-danger",
+    value: "50%",
+  },
+  {
+    imgSrc: "../../assets/images/dashboard/circle.svg",
+    cardTitle: "Payments",
+    cardValue: "44",
+    cardStats: "Increased by 20%",
+    label: "Payments",
+    graphData: [50, 20, 25, 35, 20, 40, 30],
+    additionalClass: "bg-gradient-info",
+    value: "10%",
+  },
+  {
+    imgSrc: "../../assets/images/dashboard/circle.svg",
+    cardTitle: "Logistics",
+    cardValue: "95",
+    cardStats: "Decreased by 10%",
+    label: "Logistics",
+    graphData: [10, 10, 5, 25, 25, 50, 10],
+    additionalClass: "bg-gradient-success",
+    value: "20%",
+  },
+  {
+    imgSrc: "../../assets/images/dashboard/circle.svg",
+    cardTitle: "Financial",
+    cardValue: "190",
+    cardStats: "Increased by 12%",
+    label: "Financial",
+    graphData: [80, 40, 15, 55, 25, 10, 30],
+    additionalClass: "bg-gradient-primary",
+    value: "40%",
+  },
+];
+
+export const columnsForMultiSelect = [
+  {
+    title: 'Name',
+    dataIndex: 'name',
+  },
+  {
+    title: 'Age',
+    dataIndex: 'age',
+  },
+  {
+    title: 'Address',
+    dataIndex: 'address',
+  },
+];

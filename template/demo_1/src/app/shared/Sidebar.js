@@ -75,24 +75,14 @@ const Sidebar = () => {
   return (
     <nav className="sidebar sidebar-offcanvas" id="sidebar">
       <ul className="nav">
-        <li
-          className={location.pathname === "/" ? "nav-item active" : "nav-item"}
-        >
+        <li className={location.pathname === "/" ? "nav-item active" : "nav-item"}>
           <Link className="nav-link" to="/">
             <span className="menu-title">Dashboard</span>
             <i className="mdi mdi-home menu-icon"></i>
           </Link>
         </li>
-        <li
-          className={isPathActive("/orders") ? "nav-item active" : "nav-item"}
-        >
-          <div
-            className={
-              state.basicUiMenuOpen ? "nav-link menu-expanded" : "nav-link"
-            }
-            onClick={() => toggleMenuState("basicUiMenuOpen")}
-            data-toggle="collapse"
-          >
+        <li className={isPathActive("/orders") ? "nav-item active" : "nav-item"}>
+          <div className={ state.basicUiMenuOpen ? "nav-link menu-expanded" : "nav-link"} onClick={() => toggleMenuState("basicUiMenuOpen")} data-toggle="collapse">
             <span className="menu-title">Orders</span>
             <i className="menu-arrow"></i>
             <i className="mdi mdi-format-list-bulleted menu-icon"></i>
@@ -169,13 +159,26 @@ const Sidebar = () => {
                 {" "}
                 <Link
                   className={
-                    isPathActive("/tables/basic-table")
+                    isPathActive("/logistics")
                       ? "nav-link active"
                       : "nav-link"
                   }
-                  to="/tables/basic-table"
+                  to="/logistics/FBy"
                 >
-                  Details
+                  FBy
+                </Link>
+              </li>
+              <li className="nav-item">
+                {" "}
+                <Link
+                  className={
+                    isPathActive("/logistics")
+                      ? "nav-link active"
+                      : "nav-link"
+                  }
+                  to="/logistics/FBS"
+                >
+                  FBS
                 </Link>
               </li>
             </ul>
