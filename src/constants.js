@@ -52,49 +52,48 @@ export const demoData = [
 
 export const Data = [
   {
-    eventList: "Payment Charge Success",
-    failedEvents: 100,
-    number: 1,
+    stage: "paymentChargeSuccess",
+    count: 2,
   },
   {
-    eventList: "Order Created",
-    failedEvents: 10,
-    number: 2,
+    stage: "orderCreated",
+    count: 2,
   },
   {
-    eventList: "Seller Order Initiated",
-    failedEvents: 10,
-    number: 3,
+    stage: "sellerOrderInitiated",
+    count: 0,
   },
   {
-    eventList: "Reservation Confirmed",
-    failedEvents: 90,
-    number: 4,
+    stage: "reservationConfirmed",
+    count: 0,
   },
   {
-    eventList: "Payment Status Update",
-    failedEvents: 13,
-    number: 5,
+    stage: "paymentStatusUpdate",
+    count: 0,
   },
   {
-    eventList: "Seller Order Created",
-    failedEvents: 19,
-    number: 6,
+    stage: "sellerOrderCreated",
+    count: 0,
   },
   {
-    eventList: "Customer Order Created",
-    failedEvents: 11,
-    number: 7,
+    stage: "1PCustomerOrderCreated",
+    count: 0,
   },
   {
-    eventList: "Shipment Status Update",
-    failedEvents: 15,
-    number: 8,
+    stage: "1PCustomerOrderAcknowledged",
+    count: 0,
   },
   {
-    eventList: "Seller Shipment Status Changed",
-    failedEvents: 12,
-    number: 9,
+    stage: "1PShipmentStatusUpdate",
+    count: 0,
+  },
+  {
+    stage: "sellerShipmentStatusChanged",
+    count: 0,
+  },
+  {
+    stage: "sellerOrderLineDelivered",
+    count: 0,
   },
 ];
 
@@ -212,6 +211,10 @@ export const columnsForMultiSelect = [
   {
     title: "Creation Date",
     dataIndex: "createdAd",
+  },
+  {
+    title: "Status",
+    dataIndex: "status",
   },
   {
     title: "Action",

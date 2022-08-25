@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Breadcrumb, Spin, Timeline } from "antd";
 import "./EventDetails.scss";
 import { useHistory } from "react-router-dom";
-import { eventFlowDummyData } from "../../constants";
 import { Button } from "react-bootstrap";
 import { getEventList } from "./ApiCalls";
 import { camelToSnakeCase, firstLetterCapital } from "../../utils";
@@ -31,7 +30,6 @@ const EventDetails = () => {
     mountFunction();
   }, []);
 
-  console.log(isLoading, 'isLoading ------>>>')
   return (
     <div className="Orders-details">
       <div className="page-header back-icn-ctn ">
@@ -55,7 +53,7 @@ const EventDetails = () => {
           </Breadcrumb>
         </div>
       </div>
-      {!isLoading ? (
+      {apiData.length ? (
         <div className="row">
           <div className="col-12 grid-margin stretch-card">
             <div className="card">
