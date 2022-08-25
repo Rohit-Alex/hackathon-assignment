@@ -66,14 +66,24 @@ const Sidebar = () => {
   return (
     <nav className="sidebar sidebar-offcanvas" id="sidebar">
       <ul className="nav">
-        <li className={location.pathname === "/" ? "nav-item active" : "nav-item"}>
+        <li
+          className={location.pathname === "/" ? "nav-item active" : "nav-item"}
+        >
           <Link className="nav-link" to="/">
             <span className="menu-title">Dashboard</span>
             <i className="mdi mdi-home menu-icon"></i>
           </Link>
         </li>
-        <li className={isPathActive("/orders") ? "nav-item active" : "nav-item"}>
-          <div className={ state.orderMenuOpen ? "nav-link menu-expanded" : "nav-link"} onClick={() => toggleMenuState("orderMenuOpen")} data-toggle="collapse">
+        <li
+          className={isPathActive("/orders") ? "nav-item active" : "nav-item"}
+        >
+          <div
+            className={
+              state.orderMenuOpen ? "nav-link menu-expanded" : "nav-link"
+            }
+            onClick={() => toggleMenuState("orderMenuOpen")}
+            data-toggle="collapse"
+          >
             <span className="menu-title">Orders</span>
             <i className="menu-arrow"></i>
             <i className="mdi mdi-format-list-bulleted menu-icon"></i>
@@ -81,15 +91,30 @@ const Sidebar = () => {
           <Collapse in={state.orderMenuOpen}>
             <ul className="nav flex-column sub-menu">
               <li className="nav-item">
-                <Link className={isPathActive("/orders/1p_3p") ? "nav-link active" : "nav-link"} to="/orders/1p_3p">
+                <Link
+                  className={
+                    isPathActive("/orders/1p_3p")
+                      ? "nav-link active"
+                      : "nav-link"
+                  }
+                  to="/orders/1p_3p"
+                >
                   1P & 3P Orders
                 </Link>
               </li>
             </ul>
           </Collapse>
         </li>
-        <li className={ isPathActive("/payments") ? "nav-item active" : "nav-item"}>
-          <div className={state.paymentsMenuOpen ? "nav-link menu-expanded" : "nav-link"} onClick={() => toggleMenuState("paymentsMenuOpen")} data-toggle="collapse">
+        <li
+          className={isPathActive("/payments") ? "nav-item active" : "nav-item"}
+        >
+          <div
+            className={
+              state.paymentsMenuOpen ? "nav-link menu-expanded" : "nav-link"
+            }
+            onClick={() => toggleMenuState("paymentsMenuOpen")}
+            data-toggle="collapse"
+          >
             <span className="menu-title">Payments</span>
             <i className="menu-arrow"></i>
             <i className="mdi mdi-format-list-bulleted menu-icon"></i>
@@ -97,27 +122,62 @@ const Sidebar = () => {
           <Collapse in={state.paymentsMenuOpen}>
             <ul className="nav flex-column sub-menu">
               <li className="nav-item">
-                <Link className={ isPathActive("/payments/CMR") ? "nav-link active" : "nav-link"} to="/payments/CMR">
+                <Link
+                  className={
+                    isPathActive("/payments/CMR")
+                      ? "nav-link active"
+                      : "nav-link"
+                  }
+                  to="/payments/CMR"
+                >
                   CMR
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className={isPathActive("/payments/FPAY") ? "nav-link active" : "nav-link"} to="/payments/FPAY">
+                <Link
+                  className={
+                    isPathActive("/payments/FPAY")
+                      ? "nav-link active"
+                      : "nav-link"
+                  }
+                  to="/payments/FPAY"
+                >
                   FPAY
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className={isPathActive("/payments/CREDIT") ? "nav-link active" : "nav-link"} to="/payments/CREDIT">
+                <Link
+                  className={
+                    isPathActive("/payments/CREDIT")
+                      ? "nav-link active"
+                      : "nav-link"
+                  }
+                  to="/payments/CREDIT"
+                >
                   CREDIT
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className={isPathActive("/payments/DEBIT") ? "nav-link active" : "nav-link"} to="/payments/DEBIT">
+                <Link
+                  className={
+                    isPathActive("/payments/DEBIT")
+                      ? "nav-link active"
+                      : "nav-link"
+                  }
+                  to="/payments/DEBIT"
+                >
                   DEBIT
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className={isPathActive("/payments/GIFT_CARD") ? "nav-link active" : "nav-link"} to="/payments/GIFT_CARD">
+                <Link
+                  className={
+                    isPathActive("/payments/GIFT_CARD")
+                      ? "nav-link active"
+                      : "nav-link"
+                  }
+                  to="/payments/GIFT_CARD"
+                >
                   GIFT CARD
                 </Link>
               </li>
@@ -125,7 +185,9 @@ const Sidebar = () => {
           </Collapse>
         </li>
         <li
-          className={isPathActive("/logistics") ? "nav-item active" : "nav-item"}
+          className={
+            isPathActive("/logistics") ? "nav-item active" : "nav-item"
+          }
         >
           <div
             className={
@@ -144,9 +206,7 @@ const Sidebar = () => {
                 {" "}
                 <Link
                   className={
-                    isPathActive("/logistics")
-                      ? "nav-link active"
-                      : "nav-link"
+                    isPathActive("/logistics") ? "nav-link active" : "nav-link"
                   }
                   to="/logistics/FBy"
                 >
@@ -157,9 +217,7 @@ const Sidebar = () => {
                 {" "}
                 <Link
                   className={
-                    isPathActive("/logistics")
-                      ? "nav-link active"
-                      : "nav-link"
+                    isPathActive("/logistics") ? "nav-link active" : "nav-link"
                   }
                   to="/logistics/FBS"
                 >
@@ -169,7 +227,11 @@ const Sidebar = () => {
             </ul>
           </Collapse>
         </li>
-        <li className={isPathActive("/financial") ? "nav-item active" : "nav-item"}>
+        <li
+          className={
+            isPathActive("/financial") ? "nav-item active" : "nav-item"
+          }
+        >
           <Link className="nav-link" to="/financial">
             <span className="menu-title">Financial</span>
             <i className="mdi mdi-contacts menu-icon"></i>
