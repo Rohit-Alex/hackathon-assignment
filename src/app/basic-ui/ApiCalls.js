@@ -59,3 +59,21 @@ export const getTableData = () => {
       });
   });
 };
+
+export const updateStatus = () => {
+  return new Promise((resolve, reject) => {
+    // makeHttpRequest({
+    //   path: "http://localhost:8080/v1/orderInfo/orderCreated",
+    //   method: "get",
+    // })
+    //   .then((res) => {
+    //     resolve(res || {});
+    //   })
+    //   .catch((err) => {
+    //     reject(err || {});
+    //   });
+    setTimeout(()=>{
+      resolve({status: 'Success'})
+    }, 500)
+  });
+};

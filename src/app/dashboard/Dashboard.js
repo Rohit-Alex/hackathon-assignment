@@ -243,7 +243,7 @@ const Dashboard = () => {
       <div className="row">
         {cardDetails.length && cardDetails.map((e, idx) => (
           <div className="col-md-3 stretch-card grid-margin" key={idx}>
-            {(defaultTimer || isLoading ) ? <CardShimmerEffect /> : 
+            {(defaultTimer || isLoading) ? <CardShimmerEffect /> : 
             <div
               className={`card ${e.additionalClass} card-img-holder text-white`}
             >
