@@ -215,7 +215,7 @@ export const dummmyData1 = [
     "createdAd": "2022-08-25T19:24:59.169376+05:30",
   }
 ]
-export const columnsForMultiSelect = (clickHandler) => [
+export const columnsForMultiSelect = (clickHandler, clicked) => [
   {
     title: "Order Id",
     dataIndex: "id",
@@ -240,7 +240,8 @@ export const columnsForMultiSelect = (clickHandler) => [
     title: "Status",
     dataIndex: "resolution",
     render: (_, record) => {
-      if (!record?.resolution) return null
+      if (clicked?.[record.id] === undefined) return null
+      if (clicked?.[record.id]) return <Tag icon={<SyncOutlined spin />} color="processing">processing</Tag>
       return <Tag icon={<CheckCircleOutlined />} color="success">{record?.resolution}</Tag>
     }
   },

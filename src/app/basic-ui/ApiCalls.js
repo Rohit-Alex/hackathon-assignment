@@ -33,7 +33,7 @@ export const getEventList = () => {
 export const getDashboardData = () => {
   return new Promise((resolve, reject) => {
     makeHttpRequest({
-      path: "http://localhost:8080/v1/orderInfo/count/",
+      path: "http://localhost:8080/v1/orderInfo/count",
       method: "get",
     })
       .then((res) => {
@@ -45,10 +45,10 @@ export const getDashboardData = () => {
   });
 };
 
-export const getTableData = () => {
+export const getTableData = (eventId) => {
   return new Promise((resolve, reject) => {
     makeHttpRequest({
-      path: "http://localhost:8080/v1/orderInfo/orderCreated",
+      path: `http://localhost:8080/v1/orderInfo/orderCreated${eventId}`,
       method: "get",
     })
       .then((res) => {
@@ -62,22 +62,15 @@ export const getTableData = () => {
 
 export const updateStatus = () => {
   return new Promise((resolve, reject) => {
-    // makeHttpRequest({
-    //   path: "http://localhost:8080/v1/orderInfo/orderCreated",
-    //   method: "get",
-    // })
-    //   .then((res) => {
-    //     resolve(res || {});
-    //   })
-    //   .catch((err) => {
-    //     reject(err || {});
-    //   });
-    setTimeout(()=>{
-      resolve({
-        "data": {
-          "orderNumber": "238924542",
-          "resolution": "Payment Refunded"
-        }})
-    }, 500)
+    makeHttpRequest({
+      path: "http://localhost:8080/v1/orderInfo/orderCreated",
+      method: "get",
+    })
+      .then((res) => {
+        resolve(res || {});
+      })
+      .catch((err) => {
+        reject(err || {});
+      });
   });
 };

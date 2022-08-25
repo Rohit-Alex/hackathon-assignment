@@ -6,12 +6,14 @@ import TableLayout from "../Table/Table";
 import { getTableData, updateStatus } from "./ApiCalls";
 import "./OrderFailedDetails.scss";
 import { Button } from "react-bootstrap";
+import { camelToSnakeCase, firstLetterCapital } from "../../utils";
 
 const OrderFailedDetails = () => {
   const { eventId = "" } = useParams();
   const [apiData, setApiData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+  const [clicked, setClicked] = useState({})
   // const [tempApiData, setTempApiData] = useState(dummmyData1)
   const history = useHistory();
 
@@ -19,7 +21,7 @@ const OrderFailedDetails = () => {
     let response = [];
     try {
       setIsLoading(true);
-      const data = await getTableData();
+      const data = await getTableData(eventId);
       setApiData(data);
       response[0] = data;
     } catch (err) {
@@ -45,17 +47,23 @@ const OrderFailedDetails = () => {
   }, []);
 
   const clickedHandler = async (clickedData) => {
-    const dummyData = JSON.parse(JSON.stringify(apiData))
-    const indexPresent = dummyData.findIndex(e => e.id === clickedData.id)
+    setClicked(prev => ({ ...prev, [clickedData.id]: true}))
+    const clonedApiData = JSON.parse(JSON.stringify(apiData))
+    const indexPresent = clonedApiData.findIndex(e => e.id === clickedData.id)
+    let status = ''
     try {
       const { data: { resolution = ''} = {} } = await updateStatus()
-      if (indexPresent !== -1) {
-        dummyData[indexPresent].resolution = resolution
-      }
-      setApiData(dummyData)
+      status = resolution
     } catch (err) {
       console.log(err, 'err')
     }
+    setTimeout(() => {
+      if (indexPresent !== -1) {
+        clonedApiData[indexPresent].resolution = status
+      }
+      setApiData(clonedApiData)
+      setClicked(prev => ({ ...prev, [clickedData.id]: false }))
+    }, 500)
   }
   return (
     <div className="event-details-container">
@@ -67,7 +75,7 @@ const OrderFailedDetails = () => {
               history.goBack();
             }}
           />
-          <h4 className="back-div-header">{eventId}</h4>
+          <h4 className="back-div-header">{camelToSnakeCase(firstLetterCapital(eventId))}</h4>
         </div>
         <div className="header-right-part">
           <Breadcrumb separator=">" className="bread-crumb">
@@ -109,7 +117,7 @@ const OrderFailedDetails = () => {
               loading={isLoading}
               className="table-info"
               rowSelection={rowSelection}
-              columns={columnsForMultiSelect(clickedHandler)}
+              columns={columnsForMultiSelect(clickedHandler, clicked)}
               data={apiData}
               pagination={false}
             />

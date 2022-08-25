@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { getEventList } from "./ApiCalls";
 import { camelToSnakeCase, firstLetterCapital } from "../../utils";
+import { Data } from "../../constants";
 
 const EventDetails = () => {
   const [apiData, setApiData] = useState([]);
@@ -78,7 +79,7 @@ const EventDetails = () => {
                           <Timeline.Item
                             color="green"
                             onClick={() => {
-                              history.push(`/orderDetails/${updatedText}`);
+                              history.push(`/orderDetails/${e.stage}`);
                             }}
                           >
                             <button className="btn-inverse-primary button-list">
