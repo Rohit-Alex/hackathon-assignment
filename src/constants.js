@@ -1,4 +1,4 @@
-import { Tag } from "antd";
+import { Button, Tag } from "antd";
 import React from "react";
 export const columns = [
   {
@@ -194,15 +194,38 @@ export const cardData = [
 
 export const columnsForMultiSelect = [
   {
-    title: 'Name',
-    dataIndex: 'name',
+    title: "Order Id",
+    dataIndex: "id",
   },
   {
-    title: 'Age',
-    dataIndex: 'age',
+    title: "Order Number",
+    dataIndex: "orderNumber",
   },
   {
-    title: 'Address',
-    dataIndex: 'address',
+    title: "Current Status",
+    dataIndex: "currentStage",
+  },
+  {
+    title: "Previous Status",
+    dataIndex: "previousStage",
+  },
+  {
+    title: "Creation Date",
+    dataIndex: "createdAd",
+  },
+  {
+    title: "Action",
+    render: (_, record) => (
+      <Button
+        style={{
+          backgroundColor: "none",
+          color: "#703fa0",
+          fontSize: "13px",
+          border: "none",
+        }}
+      >
+        Click
+      </Button>
+    ),
   },
 ];

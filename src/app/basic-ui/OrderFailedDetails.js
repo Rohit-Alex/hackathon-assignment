@@ -1,22 +1,11 @@
-import { Breadcrumb, Table } from "antd";
+import { Breadcrumb } from "antd";
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { columns, columnsForMultiSelect, demoData } from "../../constants";
+import { columnsForMultiSelect } from "../../constants";
 import TableLayout from "../Table/Table";
-import { getOrderFailedCount } from "./ApiCalls";
+import { getTableData } from "./ApiCalls";
 import "./OrderFailedDetails.scss";
 import { Button } from "react-bootstrap";
-
-const data1 = [];
-
-for (let i = 0; i < 46; i++) {
-  data1.push({
-    key: i,
-    name: `Edward King ${i}`,
-    age: 32,
-    address: `London, Park Lane no. ${i}`,
-  });
-}
 
 const OrderFailedDetails = () => {
   const { eventId = "" } = useParams();
@@ -28,7 +17,8 @@ const OrderFailedDetails = () => {
   const mountFunction = async () => {
     let response = [];
     try {
-      const data = await getOrderFailedCount();
+      setIsLoading(true);
+      const data = await getTableData();
       setApiData(data);
       response[0] = data;
     } catch (err) {
@@ -41,7 +31,6 @@ const OrderFailedDetails = () => {
   };
 
   const onSelectChange = (newSelectedRowKeys) => {
-    console.log('selectedRowKeys changed: ', selectedRowKeys);
     setSelectedRowKeys(newSelectedRowKeys);
   };
 
@@ -96,19 +85,22 @@ const OrderFailedDetails = () => {
           </div>
           <hr />
           <div className="table-container">
+            <Button
+              className="btn-inverse-danger trigger-btn"
+              onClick={() => setSelectedRowKeys([])}
+            >
+              Trigger Event
+            </Button>
             <TableLayout
-              className="table-info"
               loading={isLoading}
-              data={demoData}
-              columns={columns}
-              pagination
+              className="table-info"
+              rowSelection={rowSelection}
+              columns={columnsForMultiSelect}
+              data={apiData}
             />
-            <TableLayout className="table-info" rowSelection={rowSelection} columns={columnsForMultiSelect} data={data1} />
           </div>
-          <div>
-          </div>
+          <div></div>
         </div>
-        <Button onClick={() => setSelectedRowKeys([])}>MAP</Button>
       </div>
     </div>
   );
