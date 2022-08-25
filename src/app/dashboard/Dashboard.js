@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Bar, Doughnut } from "react-chartjs-2";
+import { cardData } from "../../constants";
 import { getDashboardData } from "../basic-ui/ApiCalls";
 import { CardShimmerEffect } from "../Shimmer/CardShimmer";
 import './dashboard.scss'
@@ -69,14 +70,16 @@ const Dashboard = () => {
   
   const getApiData = async () => {
     setIsLoading(true);
-    let finalData = [];
+    let finalData = [cardData];
     try {
-      const data = await getDashboardData();
+      const { data: { count = 0 } = {}} = await getDashboardData();
+      cardData[0].cardValue = count
       setCardDetails(data);
       finalData[0] = data
     } catch (err) {
       finalData[1] = err
     } finally {
+      setCardDetails(finalData[0]);
       setIsLoading(false);
       return finalData;
     }
