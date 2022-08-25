@@ -24,6 +24,22 @@
         font-size: 16px;
     }
   }
-  
+  .back-icn-ctn {
+        display: flex;
+        align-items: center !important;
+        justify-content: space-between !important;
+        .header-left-part {
+            display: flex;
+            align-items: center;
+            .back-btn-icon {
+                cursor: pointer;
+            }
+        }
+        
+        .back-div-header{
+            padding-left: 10px;
+            margin-top: 9px;
+        }
+    }
  
 }

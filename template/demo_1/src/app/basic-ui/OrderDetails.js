@@ -1,22 +1,33 @@
 import React from "react";
-import { Timeline } from "antd";
+import { Breadcrumb, Timeline } from "antd";
 import "./OrderDetails.scss";
 import { useHistory } from "react-router-dom";
 import { Data } from "../../constants";
+import backarrow from '../../assets/images/backarrow.svg'
 
 const OrderDetails = () => {
   const history = useHistory();
 
   return (
     <div className="Orders-details">
-      <div className="page-header ">
-        <h3 className="page-title">1P Orders</h3>
-        <nav aria-label="breadcrumb">
-          <ol className="breadcrumb">
-            <li className="breadcrumb-item">Orders</li>
-            <li className="breadcrumb-item active">1p and 3P Orders</li>
-          </ol>
-        </nav>
+      <div className="page-header back-icn-ctn ">
+        <div className="header-left-part">
+          <img className="back-btn-icon"
+            onClick={() => {
+              history.goBack()
+            }}
+            src={backarrow}
+            alt="back"
+          />
+          <h4 className="back-div-header">1P & 3P</h4>
+        </div>
+        <div className="header-right-part">
+          <Breadcrumb separator=">" className="bread-crumb">
+            <Breadcrumb.Item onClick={() => history.push('/')}>Dashboard</Breadcrumb.Item>
+            <Breadcrumb.Item>1P & 3P Order</Breadcrumb.Item>
+          </Breadcrumb>
+        </div>
+
       </div>
       <div className="row">
         <div className="col-12 grid-margin stretch-card">
