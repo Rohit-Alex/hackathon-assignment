@@ -35,7 +35,7 @@
     justify-content: space-between;
     align-items: center;
   Button {
-   background-color: #ddcbdd;
+   background-color: rgba(182, 109, 255, 0.2);
    color: #713471;
   }
   Button:hover {
@@ -44,12 +44,12 @@
     border: none;
   }
   h4 {
-    padding: 0;
+    padding-top: 10px;
     
   }}
   .event-details {
     font-Size: 16px;
-    padding-Bottom: 15px;
+    
     color: #727c85;
   }
   
