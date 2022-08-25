@@ -31,6 +31,7 @@ const EventDetails = () => {
     mountFunction();
   }, []);
 
+  console.log(isLoading, 'isLoading ------>>>')
   return (
     <div className="Orders-details">
       <div className="page-header back-icn-ctn ">
@@ -54,7 +55,7 @@ const EventDetails = () => {
           </Breadcrumb>
         </div>
       </div>
-      {apiData.length ? (
+      {!isLoading ? (
         <div className="row">
           <div className="col-12 grid-margin stretch-card">
             <div className="card">

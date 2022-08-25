@@ -1,4 +1,3 @@
-import { cardData } from "../../constants";
 import { makeHttpRequest } from "../../utils";
 
 export const getOrderFailedCount = () => {
