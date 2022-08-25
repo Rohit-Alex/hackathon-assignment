@@ -1,17 +1,18 @@
-import { Table } from "antd";
+import { Breadcrumb } from "antd";
 import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { columns, demoData } from "../../constants";
 import { notificationHandler } from "../../utils";
 import TableLayout from "../Table/Table";
 import { getTodosList } from "./ApiCalls";
 import "./EventDetails.scss";
-
+import backarrow from "../../assets/images/backarrow.svg";
+import { Button } from "react-bootstrap";
 const EventDetails = () => {
   const { eventId = "" } = useParams();
   const [apiData, setApiData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const history = useHistory();
 
   const mountFunction = async () => {
     notificationHandler({
@@ -38,29 +39,52 @@ const EventDetails = () => {
 
   return (
     <div className="event-details-container">
-      <h4 className=" page-header" style={{ color: "#703fa0" }}>
-        {eventId}
-      </h4>
+      <div className="page-header back-icn-ctn ">
+        <div className="header-left-part">
+          <img
+            className="back-btn-icon"
+            onClick={() => {
+              history.goBack();
+            }}
+            src={backarrow}
+            alt="back"
+          />
+          <h4 className="back-div-header">{eventId}</h4>
+        </div>
+        <div className="header-right-part">
+          <Breadcrumb separator=">" className="bread-crumb">
+            <Breadcrumb.Item onClick={() => history.push("/")}>
+              Dashboard
+            </Breadcrumb.Item>
+            <Breadcrumb.Item onClick={() => history.goBack()}>
+              Orders
+            </Breadcrumb.Item>
+            <Breadcrumb.Item>1p_3p</Breadcrumb.Item>
+          </Breadcrumb>
+        </div>
+      </div>
 
-      <div className="card">
-        <div className="card-body">
-          <div className="header-info">
-            <span>
-              <h4 className="card-title order-failed">Orders Failed</h4>
-            </span>
-            <span>
-              <Button className="btn-inverse-danger ">Refresh</Button>
-            </span>
-          </div>
-          <hr />
-          <div className="table-container">
-            <TableLayout
-              className="table-info"
-              loading={isLoading}
-              data={demoData}
-              columns={columns}
-              pagination
-            />
+      <div className="col-12 grid-margin stretch-card">
+        <div className="card">
+          <div className="card-body">
+            <div className="header-info">
+              <span>
+                <h4 className="card-title order-failed">Orders Failed</h4>
+              </span>
+              <span>
+                <Button className="btn-inverse-danger ">Refresh</Button>
+              </span>
+            </div>
+            <hr />
+            <div className="table-container">
+              <TableLayout
+                className="table-info"
+                loading={isLoading}
+                data={demoData}
+                columns={columns}
+                pagination
+              />
+            </div>
           </div>
         </div>
       </div>

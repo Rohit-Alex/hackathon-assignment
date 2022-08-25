@@ -110,7 +110,7 @@ const Sidebar = () => {
                   }
                   to="/orders/1p_3p"
                 >
-                  1P & 3P
+                  1P & 3P Orders
                 </Link>
               </li>
             </ul>

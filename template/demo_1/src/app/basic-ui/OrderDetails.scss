@@ -24,6 +24,24 @@
         font-size: 16px;
     }
   }
+  .back-icn-ctn {
+        display: flex;
+        align-items: center !important;
+        justify-content: space-between !important;
+        .header-left-part {
+            display: flex;
+            align-items: center;
+            .back-btn-icon {
+                cursor: pointer;
+            }
+        }
+        
+        .back-div-header{
+            color: #703fa0;
+            padding-left: 10px;
+            margin-top: 9px;
+        }
+    }
   .button-list:hover {
     background-color: #703fa0;
     color: white;
@@ -35,7 +53,7 @@
     justify-content: space-between;
     align-items: center;
   Button {
-   background-color: rgba(182, 109, 255, 0.2);
+   background-color: #ddcbdd;
    color: #713471;
   }
   Button:hover {
@@ -44,14 +62,12 @@
     border: none;
   }
   h4 {
-    padding-top: 10px;
+    padding: 0;
     
   }}
   .event-details {
     font-Size: 16px;
-    
+    padding-Bottom: 15px;
     color: #727c85;
   }
-  
- 
 }
