@@ -37,9 +37,37 @@
         }
         
         .back-div-header{
+            color: "#703fa0";
             padding-left: 10px;
             margin-top: 9px;
         }
     }
- 
+  .button-list:hover {
+    background-color: #703fa0;
+    color: white;
+    border: none;
+  }
+  
+  .header-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  Button {
+   background-color: #ddcbdd;
+   color: #713471;
+  }
+  Button:hover {
+    background-color: #713471;
+    color: #ddcbdd;
+    border: none;
+  }
+  h4 {
+    padding: 0;
+    
+  }}
+  .event-details {
+    font-Size: 16px;
+    padding-Bottom: 15px;
+    color: #727c85;
+  }
 }

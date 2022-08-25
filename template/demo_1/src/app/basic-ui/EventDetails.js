@@ -7,6 +7,7 @@ import TableLayout from "../Table/Table";
 import { getTodosList } from "./ApiCalls";
 import "./EventDetails.scss";
 import backarrow from '../../assets/images/backarrow.svg'
+import { Button } from "react-bootstrap";
 const EventDetails = () => {
   const { eventId = "" } = useParams();
   const [apiData, setApiData] = useState([]);
@@ -58,9 +59,19 @@ const EventDetails = () => {
         </div>
         
       </div>
+
       <div className="col-12 grid-margin stretch-card">
         <div className="card">
           <div className="card-body">
+            <div className="header-info">
+              <span>
+                <h4 className="card-title order-failed">Orders Failed</h4>
+              </span>
+              <span>
+                <Button className="btn-inverse-danger ">Refresh</Button>
+              </span>
+            </div>
+            <hr />
             <div className="table-container">
               <TableLayout
                 className="table-info"

@@ -4,6 +4,7 @@ import "./OrderDetails.scss";
 import { useHistory } from "react-router-dom";
 import { Data } from "../../constants";
 import backarrow from '../../assets/images/backarrow.svg'
+import { Button } from "react-bootstrap";
 
 const OrderDetails = () => {
   const history = useHistory();
@@ -33,12 +34,14 @@ const OrderDetails = () => {
         <div className="col-12 grid-margin stretch-card">
           <div className="card">
             <div className="card-body">
-              <h4
-                className="card-title"
-                style={{ fontSize: "18px", paddingBottom: "15px" }}
-              >
-                Event Details
-              </h4>
+              <div className="header-info">
+                <span>
+                  <h4 className="card-title event-details">Event Details</h4>
+                </span>
+                <span>
+                  <Button className="btn-inverse-danger ">Refresh</Button>
+                </span>
+              </div>
               <hr />
               <div className="template-demo">
                 <Timeline>
