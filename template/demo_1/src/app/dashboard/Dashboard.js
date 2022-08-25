@@ -54,7 +54,7 @@ const cardData = [
     cardValue: "100",
     cardStats: "Increased by 60%",
     label: "Orders",
-    graphData: [20, 40, 15, 35, 25, 50, 30, 20],
+    graphData: [20, 40, 15, 35, 25, 50, 30],
     additionalClass: "bg-gradient-danger",
     value: "50%",
   },
@@ -64,7 +64,7 @@ const cardData = [
     cardValue: "44",
     cardStats: "Increased by 20%",
     label: "Payments",
-    graphData: [50, 20, 25, 35, 20, 40, 30, 20],
+    graphData: [50, 20, 25, 35, 20, 40, 30],
     additionalClass: "bg-gradient-info",
     value: "10%",
   },
@@ -74,7 +74,7 @@ const cardData = [
     cardValue: "95",
     cardStats: "Decreased by 10%",
     label: "Logistics",
-    graphData: [10, 10, 5, 25, 25, 50, 10, 20],
+    graphData: [10, 10, 5, 25, 25, 50, 10],
     additionalClass: "bg-gradient-success",
     value: "20%",
   },
@@ -84,7 +84,7 @@ const cardData = [
     cardValue: "190",
     cardStats: "Increased by 12%",
     label: "Financial",
-    graphData: [80, 40, 15, 55, 25, 10, 30, 20],
+    graphData: [80, 40, 15, 55, 25, 10, 30],
     additionalClass: "bg-gradient-primary",
     value: "40%",
   },
@@ -125,21 +125,21 @@ const Dashboard = () => {
     const data = await getApiData();
     let ctx = document.getElementById("visitSaleChart")?.getContext("2d");
     if (ctx) {
-      let gradientBar1 = ctx.createLinearGradient(0, 0, 0, 181);
-      gradientBar1.addColorStop(0, "#ffbf96");
-      gradientBar1.addColorStop(1, "#fe7096");
+      let gradientBar1 = ctx.createLinearGradient(0, 0, 0, 281);
+      gradientBar1.addColorStop(0, "rgba(254, 124, 150, 1)");
+      gradientBar1.addColorStop(1, "rgba(255, 205, 150, 1)");
 
-      let gradientBar2 = ctx.createLinearGradient(0, 0, 0, 360);
-      gradientBar2.addColorStop(0, "#90caf9");
-      gradientBar2.addColorStop(1, "#047edf");
+      let gradientBar2 = ctx.createLinearGradient(0, 0, 0, 490);
+      gradientBar2.addColorStop(0, "rgba(69, 202, 252, 1)");
+      gradientBar2.addColorStop(1, "rgba(48, 63, 159, 1)");
 
-      let gradientBar3 = ctx.createLinearGradient(0, 0, 0, 300);
-      gradientBar3.addColorStop(0, "#84d9d2");
-      gradientBar3.addColorStop(1, "#07cdae");
+      let gradientBar3 = ctx.createLinearGradient(0, 0, 0, 250);
+      gradientBar3.addColorStop(0, "rgba(6, 185, 157, 1)");
+      gradientBar3.addColorStop(1, "rgba(132, 217, 210, 1)");
 
-      // let gradientBar4 = ctx.createLinearGradient(0, 0, 0, 600);
-      // gradientBar3.addColorStop(0, "#90caf9");
-      // gradientBar3.addColorStop(1, "#047edf");
+      let gradientBar4 = ctx.createLinearGradient(0, 0, 0, 280);
+      gradientBar4.addColorStop(0, "rgba(218, 140, 255, 1)");
+      gradientBar4.addColorStop(1, "rgba(154, 85, 255, 1)");
 
       let gradientdonut1 = ctx.createLinearGradient(0, 0, 0, 180);
       gradientdonut1.addColorStop(0, "rgba(254, 124, 150, 1)");
@@ -158,7 +158,15 @@ const Dashboard = () => {
       gradientdonut4.addColorStop(1, "rgba(154, 85, 255, 1)");
 
       const newVisitSaleData = {
-        labels: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG"],
+        labels: [
+          "MONDAY",
+          "TUESDAY",
+          "WEDNESDAY",
+          "THURSDAY",
+          "FRIDAY",
+          "SATURDAY",
+          "SUNDAY",
+        ],
         datasets: data.map((e, idx) => ({
           label: e.cardTitle,
           borderColor:
@@ -168,7 +176,7 @@ const Dashboard = () => {
               ? gradientBar2
               : idx === 2
               ? gradientBar3
-              : "#047edf",
+              : gradientBar4,
           backgroundColor:
             idx === 0
               ? gradientBar1
@@ -176,7 +184,7 @@ const Dashboard = () => {
               ? gradientBar2
               : idx === 2
               ? gradientBar3
-              : "#047edf",
+              : gradientBar4,
           hoverBackgroundColor:
             idx === 0
               ? gradientBar1
@@ -184,7 +192,7 @@ const Dashboard = () => {
               ? gradientBar2
               : idx === 2
               ? gradientBar3
-              : "#047edf",
+              : gradientBar4,
           legendColor:
             idx === 0
               ? gradientBar1
@@ -192,7 +200,7 @@ const Dashboard = () => {
               ? gradientBar2
               : idx === 2
               ? gradientBar3
-              : "#047edf",
+              : gradientBar4,
           pointRadius: 0,
           fill: false,
           borderWidth: 1,

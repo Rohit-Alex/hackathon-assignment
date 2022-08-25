@@ -10,7 +10,9 @@ const OrderDetails = () => {
   return (
     <div className="Orders-details">
       <div className="page-header ">
-        <h3 className="page-title">1P Orders</h3>
+        <h3 className="page-title" style={{ color: "#703fa0" }}>
+          1P Orders
+        </h3>
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb">
             <li className="breadcrumb-item">Orders</li>
@@ -22,12 +24,7 @@ const OrderDetails = () => {
         <div className="col-12 grid-margin stretch-card">
           <div className="card">
             <div className="card-body">
-              <h4
-                className="card-title"
-                style={{ fontSize: "18px", paddingBottom: "15px" }}
-              >
-                Event Details
-              </h4>
+              <h4 className="card-title event-details">Event Details</h4>
               <hr />
               <div className="template-demo">
                 <Timeline>
@@ -36,7 +33,6 @@ const OrderDetails = () => {
                       <Timeline.Item
                         color="green"
                         onClick={() => {
-                          // history.push(`/orderDetails?eventId=${e.eventList}`)
                           history.push(`/orderDetails/${e.eventList}`);
                         }}
                       >
