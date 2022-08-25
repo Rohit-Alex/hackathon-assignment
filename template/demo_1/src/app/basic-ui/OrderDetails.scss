@@ -29,6 +29,24 @@
     color: white;
     border: none;
   }
+  
+  .header-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  Button {
+   background-color: #ddcbdd;
+   color: #713471;
+  }
+  Button:hover {
+    background-color: #713471;
+    color: #ddcbdd;
+    border: none;
+  }
+  h4 {
+    padding: 0;
+    
+  }}
   .event-details {
     font-Size: 16px;
     padding-Bottom: 15px;

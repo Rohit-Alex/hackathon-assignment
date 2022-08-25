@@ -1,5 +1,6 @@
 import { Table } from "antd";
 import React, { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { columns, demoData } from "../../constants";
 import { notificationHandler } from "../../utils";
@@ -48,7 +49,7 @@ const EventDetails = () => {
               <h4 className="card-title order-failed">Orders Failed</h4>
             </span>
             <span>
-              <button className="btn-gradient-primary">Refresh</button>
+              <Button className="btn-inverse-danger ">Refresh</Button>
             </span>
           </div>
           <hr />
