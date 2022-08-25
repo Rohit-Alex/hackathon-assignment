@@ -74,8 +74,8 @@ const Dashboard = () => {
     try {
       const { data: { count = 0 } = {}} = await getDashboardData();
       cardData[0].cardValue = count
-      setCardDetails(data);
-      finalData[0] = data
+      setCardDetails(cardData);
+      finalData[0] = cardData
     } catch (err) {
       finalData[1] = err
     } finally {
