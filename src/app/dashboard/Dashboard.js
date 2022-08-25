@@ -58,6 +58,7 @@ const Dashboard = () => {
   const [visitSaleData, setVisitSaleData] = useState({});
   const visitSaleOptions = defaultVisitScaleOptions;
   const [trafficData, setTrafficData] = useState({});
+  const [defaultTimer, setDefaultTimer] = useState(true)
   const trafficOptions = {
     responsive: true,
     animation: {
@@ -212,7 +213,11 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
+    const id = setTimeout(()=>{
+      setDefaultTimer(false)
+    }, 500)
     mountHelperFunction();
+    return () => clearTimeout(id)
   }, []);
 
   return (
@@ -238,7 +243,7 @@ const Dashboard = () => {
       <div className="row">
         {cardDetails.length && cardDetails.map((e, idx) => (
           <div className="col-md-3 stretch-card grid-margin" key={idx}>
-            {/* <CardShimmerEffect /> */}
+            {(defaultTimer || isLoading ) ? <CardShimmerEffect /> : 
             <div
               className={`card ${e.additionalClass} card-img-holder text-white`}
             >
@@ -259,6 +264,7 @@ const Dashboard = () => {
                 <h6 className="card-text text-light">{e.cardStats}</h6>
               </div>
             </div>
+          }
           </div>
         ))}
       </div>
