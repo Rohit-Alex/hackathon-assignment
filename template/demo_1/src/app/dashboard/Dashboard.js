@@ -276,7 +276,7 @@ const Dashboard = () => {
       <div className="row">
         {cardData.map((e, idx) => (
           <div className="col-md-3 stretch-card grid-margin" key={idx}>
-            <CardShimmerEffect />
+            {/* <CardShimmerEffect /> */}
             <div
               className={`card ${e.additionalClass} card-img-holder text-white`}
             >
