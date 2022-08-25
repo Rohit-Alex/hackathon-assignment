@@ -1,34 +1,27 @@
-import { Breadcrumb, Table } from "antd";
+import { Breadcrumb } from "antd";
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { columns, columnsForMultiSelect, demoData } from "../../constants";
+import { columns, demoData } from "../../constants";
 import TableLayout from "../Table/Table";
-import { getOrderFailedCount } from "./ApiCalls";
+import { getTodosList } from "./ApiCalls";
 import "./OrderFailedDetails.scss";
 import { Button } from "react-bootstrap";
-
-const data1 = [];
-
-for (let i = 0; i < 46; i++) {
-  data1.push({
-    key: i,
-    name: `Edward King ${i}`,
-    age: 32,
-    address: `London, Park Lane no. ${i}`,
-  });
-}
 
 const OrderFailedDetails = () => {
   const { eventId = "" } = useParams();
   const [apiData, setApiData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const history = useHistory();
 
   const mountFunction = async () => {
+    // notificationHandler({
+    //   message: "Hi, MG",
+    //   description: "Leaving so soon",
+    //   key: "getTodo",
+    // });
     let response = [];
     try {
-      const data = await getOrderFailedCount();
+      const data = await getTodosList();
       setApiData(data);
       response[0] = data;
     } catch (err) {
@@ -39,17 +32,7 @@ const OrderFailedDetails = () => {
       return response;
     }
   };
-
-  const onSelectChange = (newSelectedRowKeys) => {
-    console.log('selectedRowKeys changed: ', selectedRowKeys);
-    setSelectedRowKeys(newSelectedRowKeys);
-  };
-
-  const rowSelection = {
-    selectedRowKeys,
-    onChange: onSelectChange,
-  };
-
+  console.log(apiData);
   useEffect(() => {
     mountFunction();
   }, []);
@@ -103,12 +86,8 @@ const OrderFailedDetails = () => {
               columns={columns}
               pagination
             />
-            <TableLayout className="table-info" rowSelection={rowSelection} columns={columnsForMultiSelect} data={data1} />
-          </div>
-          <div>
           </div>
         </div>
-        <Button onClick={() => setSelectedRowKeys([])}>MAP</Button>
       </div>
     </div>
   );

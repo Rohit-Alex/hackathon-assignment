@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import { Breadcrumb, Spin, Timeline } from "antd";
 import "./EventDetails.scss";
 import { useHistory } from "react-router-dom";
@@ -72,32 +71,37 @@ const EventDetails = () => {
                 <div className="template-demo">
                   <Timeline>
                     {apiData.map((e, idx) => {
-                      const updatedText = camelToSnakeCase(firstLetterCapital(e.stage))
+                      const updatedText = camelToSnakeCase(
+                        firstLetterCapital(e.stage)
+                      );
                       return (
-                      <React.Fragment key={idx}>
-                        <Timeline.Item
-                          color="green"
-                          onClick={() => {
-                            // history.push(`/orderDetails?eventId=${e.eventList}`)
-                            history.push(`/orderDetails/${updatedText}`);
-                          }}
-                        >
-                          <button className="btn-inverse-primary button-list">
+                        <React.Fragment key={idx}>
+                          <Timeline.Item
+                            color="green"
+                            onClick={() => {
+                              // history.push(`/orderDetails?eventId=${e.eventList}`)
+                              history.push(`/orderDetails/${updatedText}`);
+                            }}
+                          >
+                            <button className="btn-inverse-primary button-list">
                               <span>{updatedText}</span>
-                            <span className="badge badge-inverse-primary badge-pill numbers-id">
-                              {e.count}
-                            </span>
-                          </button>
-                        </Timeline.Item>
-                      </React.Fragment>
-                    )})}
+                              <span className="badge badge-inverse-primary badge-pill numbers-id">
+                                {e.count}
+                              </span>
+                            </button>
+                          </Timeline.Item>
+                        </React.Fragment>
+                      );
+                    })}
                   </Timeline>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      ) : <Spin />}
+      ) : (
+        <Spin />
+      )}
     </div>
   );
 };
