@@ -43,7 +43,6 @@ export const getDashboardData = () => {
       .catch((err) => {
         reject(err || {});
       });
-    setTimeout(resolve(cardData), 300);
   });
 };
 
@@ -59,6 +58,5 @@ export const getTableData = () => {
       .catch((err) => {
         reject(err || {});
       });
-    setTimeout(resolve(cardData), 300);
   });
 };
