@@ -68,7 +68,6 @@ const OrderFailedDetails = () => {
       }
       setApiData(clonedApiData);
       // setTempApiData(clonedApiData);
-
       setClicked((prev) => ({ ...prev, [clickedData.id]: false }));
     }, 700);
   };

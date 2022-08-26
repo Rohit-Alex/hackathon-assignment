@@ -242,4 +242,5 @@ const Sidebar = () => {
   );
 };
 
-export default withRouter(Sidebar); 
+
+export default withRouter(Sidebar);
