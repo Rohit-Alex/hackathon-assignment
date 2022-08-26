@@ -23,7 +23,7 @@ describe('Dashboard test case', () => {
     })
     it('render the Dashboard component properly', async () => {
         await act(async () =>
-            await render(<Dashboard />)
+            await render(<Dashboard /> )
         )
     })
 })

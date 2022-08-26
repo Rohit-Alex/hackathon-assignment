@@ -122,7 +122,6 @@ const OrderFailedDetails = () => {
               pagination={false}
             />
           </div>
-          <div></div>
         </div>
       </div>
     </div>
