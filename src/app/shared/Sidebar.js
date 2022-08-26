@@ -66,13 +66,14 @@ const Sidebar = () => {
   return (
     <nav className="sidebar sidebar-offcanvas" id="sidebar">
       <ul className="nav">
-        <li className={location.pathname === "/" ? "nav-item active" : "nav-item"}>
+        <li
+          className={location.pathname === "/" ? "nav-item active" : "nav-item"}
+        >
           <Link className="nav-link" to="/">
             <span className="menu-title">Dashboard</span>
             <i className="mdi mdi-home menu-icon"></i>
           </Link>
         </li>
-
         <li
           className={isPathActive("/orders") ? "nav-item active" : "nav-item"}
         >
@@ -241,4 +242,4 @@ const Sidebar = () => {
   );
 };
 
-export default withRouter(Sidebar);
+export default withRouter(Sidebar); 

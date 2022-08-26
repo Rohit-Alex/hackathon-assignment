@@ -1,23 +1,12 @@
-import { Breadcrumb, Table } from "antd";
+import { Breadcrumb } from "antd";
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { columnsForMultiSelect } from "../../constants";
+import { columnsForMultiSelect, dummmyData1 } from "../../constants";
 import TableLayout from "../Table/Table";
 import { getTableData, updateStatus } from "./ApiCalls";
 import "./OrderFailedDetails.scss";
 import { Button } from "react-bootstrap";
 import { camelToSnakeCase, firstLetterCapital } from "../../utils";
-
-const data1 = [];
-
-for (let i = 0; i < 46; i++) {
-  data1.push({
-    key: i,
-    name: `Edward King ${i}`,
-    age: 32,
-    address: `London, Park Lane no. ${i}`,
-  });
-}
 
 const OrderFailedDetails = () => {
   const { eventId = "" } = useParams();
@@ -25,6 +14,7 @@ const OrderFailedDetails = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const [clicked, setClicked] = useState({});
+  // const [tempApiData, setTempApiData] = useState(dummmyData1)
   const history = useHistory();
 
   const mountFunction = async () => {
@@ -59,6 +49,7 @@ const OrderFailedDetails = () => {
   const clickedHandler = async (clickedData) => {
     setClicked((prev) => ({ ...prev, [clickedData.id]: true }));
     const clonedApiData = JSON.parse(JSON.stringify(apiData));
+    // const clonedApiData = JSON.parse(JSON.stringify(tempApiData));
     const indexPresent = clonedApiData.findIndex(
       (e) => e.id === clickedData.id
     );
@@ -76,6 +67,7 @@ const OrderFailedDetails = () => {
         clonedApiData[indexPresent].resolution = status;
       }
       setApiData(clonedApiData);
+      // setTempApiData(clonedApiData);
 
       setClicked((prev) => ({ ...prev, [clickedData.id]: false }));
     }, 700);
@@ -136,14 +128,11 @@ const OrderFailedDetails = () => {
               rowSelection={rowSelection}
               columns={columnsForMultiSelect(clickedHandler, clicked)}
               data={apiData}
+              // data={tempApiData}
               pagination={false}
             />
-            <TableLayout className="table-info" rowSelection={rowSelection} columns={columnsForMultiSelect} data={data1} />
-          </div>
-          <div>
           </div>
         </div>
-        <Button onClick={() => setSelectedRowKeys([])}>MAP</Button>
       </div>
     </div>
   );
