@@ -51,18 +51,9 @@ const Sidebar = () => {
     });
 
     const dropdownPaths = [
-      { path: "/apps", state: "appsMenuOpen" },
-      { path: "/orders", state: "basicUiMenuOpen" },
-      { path: "/advanced-ui", state: "advancedUiMenuOpen" },
-      { path: "/form-elements", state: "formElementsMenuOpen" },
-      { path: "/tables", state: "tablesMenuOpen" },
-      { path: "/maps", state: "mapsMenuOpen" },
-      { path: "/icons", state: "iconsMenuOpen" },
-      { path: "/charts", state: "chartsMenuOpen" },
-      { path: "/user-pages", state: "userPagesMenuOpen" },
-      { path: "/error-pages", state: "errorPagesMenuOpen" },
-      { path: "/general-pages", state: "generalPagesMenuOpen" },
-      { path: "/ecommerce", state: "ecommercePagesMenuOpen" },
+      { path: "/orders", state: "orderMenuOpen" },
+      { path: "/payments", state: "paymentsMenuOpen" },
+      { path: "/logistics", state: "logisticsMenuOpen" },
     ];
 
     dropdownPaths.forEach((obj) => {
@@ -88,19 +79,18 @@ const Sidebar = () => {
         >
           <div
             className={
-              state.basicUiMenuOpen ? "nav-link menu-expanded" : "nav-link"
+              state.orderMenuOpen ? "nav-link menu-expanded" : "nav-link"
             }
-            onClick={() => toggleMenuState("basicUiMenuOpen")}
+            onClick={() => toggleMenuState("orderMenuOpen")}
             data-toggle="collapse"
           >
             <span className="menu-title">Orders</span>
             <i className="menu-arrow"></i>
             <i className="mdi mdi-format-list-bulleted menu-icon"></i>
           </div>
-          <Collapse in={state.basicUiMenuOpen}>
+          <Collapse in={state.orderMenuOpen}>
             <ul className="nav flex-column sub-menu">
               <li className="nav-item">
-                {" "}
                 <Link
                   className={
                     isPathActive("/orders/1p_3p")
@@ -116,109 +106,136 @@ const Sidebar = () => {
           </Collapse>
         </li>
         <li
-          className={
-            isPathActive("/form-elements") ? "nav-item active" : "nav-item"
-          }
+          className={isPathActive("/payments") ? "nav-item active" : "nav-item"}
         >
           <div
             className={
-              state.formElementsMenuOpen ? "nav-link menu-expanded" : "nav-link"
+              state.paymentsMenuOpen ? "nav-link menu-expanded" : "nav-link"
             }
-            onClick={() => toggleMenuState("formElementsMenuOpen")}
+            onClick={() => toggleMenuState("paymentsMenuOpen")}
             data-toggle="collapse"
           >
             <span className="menu-title">Payments</span>
             <i className="menu-arrow"></i>
             <i className="mdi mdi-format-list-bulleted menu-icon"></i>
           </div>
-          <Collapse in={state.formElementsMenuOpen}>
+          <Collapse in={state.paymentsMenuOpen}>
             <ul className="nav flex-column sub-menu">
               <li className="nav-item">
                 <Link
                   className={
-                    isPathActive("/form-elements/basic-elements")
+                    isPathActive("/payments/CMR")
                       ? "nav-link active"
                       : "nav-link"
                   }
-                  to="/form-elements/basic-elements"
+                  to="/payments/CMR"
                 >
-                  1P
+                  CMR
                 </Link>
               </li>
               <li className="nav-item">
                 <Link
                   className={
-                    isPathActive("/form-elements/basic-elements")
+                    isPathActive("/payments/FPAY")
                       ? "nav-link active"
                       : "nav-link"
                   }
-                  to="/form-elements/basic-elements"
+                  to="/payments/FPAY"
                 >
-                  1P
+                  FPAY
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className={
+                    isPathActive("/payments/CREDIT")
+                      ? "nav-link active"
+                      : "nav-link"
+                  }
+                  to="/payments/CREDIT"
+                >
+                  CREDIT
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className={
+                    isPathActive("/payments/DEBIT")
+                      ? "nav-link active"
+                      : "nav-link"
+                  }
+                  to="/payments/DEBIT"
+                >
+                  DEBIT
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className={
+                    isPathActive("/payments/GIFT_CARD")
+                      ? "nav-link active"
+                      : "nav-link"
+                  }
+                  to="/payments/GIFT_CARD"
+                >
+                  GIFT CARD
                 </Link>
               </li>
             </ul>
           </Collapse>
         </li>
         <li
-          className={isPathActive("/tables") ? "nav-item active" : "nav-item"}
+          className={
+            isPathActive("/logistics") ? "nav-item active" : "nav-item"
+          }
         >
           <div
             className={
-              state.tablesMenuOpen ? "nav-link menu-expanded" : "nav-link"
+              state.logisticsMenuOpen ? "nav-link menu-expanded" : "nav-link"
             }
-            onClick={() => toggleMenuState("tablesMenuOpen")}
+            onClick={() => toggleMenuState("logisticsMenuOpen")}
             data-toggle="collapse"
           >
             <span className="menu-title">Logistics</span>
             <i className="menu-arrow"></i>
             <i className="mdi mdi-table-large menu-icon"></i>
           </div>
-          <Collapse in={state.tablesMenuOpen}>
+          <Collapse in={state.logisticsMenuOpen}>
             <ul className="nav flex-column sub-menu">
               <li className="nav-item">
                 {" "}
                 <Link
                   className={
-                    isPathActive("/tables/basic-table")
-                      ? "nav-link active"
-                      : "nav-link"
+                    isPathActive("/logistics") ? "nav-link active" : "nav-link"
                   }
-                  to="/tables/basic-table"
+                  to="/logistics/FBy"
                 >
-                  Details
+                  FBy
+                </Link>
+              </li>
+              <li className="nav-item">
+                {" "}
+                <Link
+                  className={
+                    isPathActive("/logistics") ? "nav-link active" : "nav-link"
+                  }
+                  to="/logistics/FBS"
+                >
+                  FBS
                 </Link>
               </li>
             </ul>
           </Collapse>
         </li>
-        <li className={isPathActive("/icons") ? "nav-item active" : "nav-item"}>
-          <div
-            className={
-              state.iconsMenuOpen ? "nav-link menu-expanded" : "nav-link"
-            }
-            onClick={() => toggleMenuState("iconsMenuOpen")}
-            data-toggle="collapse"
-          >
+        <li
+          className={
+            isPathActive("/financial") ? "nav-item active" : "nav-item"
+          }
+        >
+          <Link className="nav-link" to="/financial">
             <span className="menu-title">Financial</span>
-            <i className="menu-arrow"></i>
             <i className="mdi mdi-contacts menu-icon"></i>
-          </div>
-          <Collapse in={state.iconsMenuOpen}>
-            <ul className="nav flex-column sub-menu">
-              <li className="nav-item">
-                {" "}
-                <Link
-                  className={
-                    isPathActive("/icons/mdi") ? "nav-link active" : "nav-link"
-                  }
-                  to="/icons/mdi"
-                >
-                  1P
-                </Link>
-              </li>
-            </ul>
-          </Collapse>
+          </Link>
         </li>
       </ul>
     </nav>

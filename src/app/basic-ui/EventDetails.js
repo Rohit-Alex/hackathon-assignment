@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Breadcrumb, Spin, Timeline } from "antd";
 import "./EventDetails.scss";
 import { useHistory } from "react-router-dom";
-import { eventFlowDummyData } from "../../constants";
 import { Button } from "react-bootstrap";
 import { getEventList } from "./ApiCalls";
 import { camelToSnakeCase, firstLetterCapital } from "../../utils";
@@ -15,8 +14,7 @@ const EventDetails = () => {
   const mountFunction = async () => {
     let response = [];
     try {
-      // const { data: { flowWithCounts = [] } = {} } = await getEventList();
-      const { data: { flowWithCounts = [] } = {} } = eventFlowDummyData;
+      const { data: { flowWithCounts = [] } = {} } = await getEventList();
       setApiData(flowWithCounts);
       response[0] = flowWithCounts;
     } catch (err) {
@@ -54,7 +52,7 @@ const EventDetails = () => {
           </Breadcrumb>
         </div>
       </div>
-      {apiData.length ? (
+      {!isLoading ? (
         <div className="row">
           <div className="col-12 grid-margin stretch-card">
             <div className="card">
@@ -79,8 +77,7 @@ const EventDetails = () => {
                           <Timeline.Item
                             color="green"
                             onClick={() => {
-                              // history.push(`/orderDetails?eventId=${e.eventList}`)
-                              history.push(`/orderDetails/${updatedText}`);
+                              history.push(`/orderDetails/${e.stage}`);
                             }}
                           >
                             <button className="btn-inverse-primary button-list">

@@ -1,27 +1,26 @@
 import { Breadcrumb } from "antd";
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { columns, demoData } from "../../constants";
+import { columnsForMultiSelect } from "../../constants";
 import TableLayout from "../Table/Table";
-import { getTodosList } from "./ApiCalls";
+import { getTableData, updateStatus } from "./ApiCalls";
 import "./OrderFailedDetails.scss";
 import { Button } from "react-bootstrap";
+import { camelToSnakeCase, firstLetterCapital } from "../../utils";
 
 const OrderFailedDetails = () => {
   const { eventId = "" } = useParams();
   const [apiData, setApiData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+  const [clicked, setClicked] = useState({});
   const history = useHistory();
 
   const mountFunction = async () => {
-    // notificationHandler({
-    //   message: "Hi, MG",
-    //   description: "Leaving so soon",
-    //   key: "getTodo",
-    // });
     let response = [];
     try {
-      const data = await getTodosList();
+      setIsLoading(true);
+      const data = await getTableData(eventId);
       setApiData(data);
       response[0] = data;
     } catch (err) {
@@ -32,11 +31,44 @@ const OrderFailedDetails = () => {
       return response;
     }
   };
-  console.log(apiData);
+
+  const onSelectChange = (newSelectedRowKeys) => {
+    setSelectedRowKeys(newSelectedRowKeys);
+  };
+
+  const rowSelection = {
+    selectedRowKeys,
+    onChange: onSelectChange,
+  };
+
   useEffect(() => {
     mountFunction();
   }, []);
 
+  const clickedHandler = async (clickedData) => {
+    setClicked((prev) => ({ ...prev, [clickedData.id]: true }));
+    const clonedApiData = JSON.parse(JSON.stringify(apiData));
+    const indexPresent = clonedApiData.findIndex(
+      (e) => e.id === clickedData.id
+    );
+    let status = "";
+    try {
+      const { data: { resolution = "" } = {} } = await updateStatus(
+        clickedData?.orderNumber
+      );
+      status = resolution;
+    } catch (err) {
+      console.log(err, "err");
+    }
+    setTimeout(() => {
+      if (indexPresent !== -1) {
+        clonedApiData[indexPresent].resolution = status;
+      }
+      setApiData(clonedApiData);
+
+      setClicked((prev) => ({ ...prev, [clickedData.id]: false }));
+    }, 700);
+  };
   return (
     <div className="event-details-container">
       <div className="page-header back-icn-ctn ">
@@ -47,7 +79,9 @@ const OrderFailedDetails = () => {
               history.goBack();
             }}
           />
-          <h4 className="back-div-header">{eventId}</h4>
+          <h4 className="back-div-header">
+            {camelToSnakeCase(firstLetterCapital(eventId))}
+          </h4>
         </div>
         <div className="header-right-part">
           <Breadcrumb separator=">" className="bread-crumb">
@@ -79,12 +113,19 @@ const OrderFailedDetails = () => {
           </div>
           <hr />
           <div className="table-container">
+            <Button
+              className="btn-inverse-danger trigger-btn"
+              onClick={() => setSelectedRowKeys([])}
+            >
+              Trigger Event
+            </Button>
             <TableLayout
-              className="table-info"
               loading={isLoading}
-              data={demoData}
-              columns={columns}
-              pagination
+              className="table-info"
+              rowSelection={rowSelection}
+              columns={columnsForMultiSelect(clickedHandler, clicked)}
+              data={apiData}
+              pagination={false}
             />
           </div>
         </div>

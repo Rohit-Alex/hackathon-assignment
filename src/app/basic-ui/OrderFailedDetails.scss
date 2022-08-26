@@ -7,7 +7,7 @@
     .table-container {
         background-color: white;
         width: 100%;
-        height: 100vh;
+       
         padding-top: 15px;
         .table-info {
             padding: 20px;
@@ -47,8 +47,8 @@
         align-items: center;
     Button {
         background-color: rgba(182, 109, 255, 0.2);
-   color: #703fa0;
-   border: none;
+        color: #703fa0;
+        border: none;
     }
     Button:hover {
         background-color: #713471;
@@ -63,5 +63,16 @@
         font-size: 16px;
         padding-bottom: 15px;
         color: #727c85;
+    }
+    .trigger-btn {
+        background-color: rgba(182, 109, 255, 0.2);
+        color: #703fa0;
+        border: none;
+        margin-left: 1.3rem;
+    }
+    .trigger-btn:hover {
+        background-color: #713471;
+        color: #ddcbdd;
+        border: none;
     }
 }
