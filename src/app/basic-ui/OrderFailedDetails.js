@@ -21,13 +21,12 @@ const OrderFailedDetails = () => {
     let response = [];
     try {
       setIsLoading(true);
-      const data = await getTableData(eventId);
-      setApiData(data);
+      const { data: { failedEvents = [] } = {} } = await getTableData(eventId);
+      setApiData(failedEvents);
       response[0] = data;
     } catch (err) {
       response[1] = err;
     } finally {
-      setApiData(response);
       setIsLoading(false);
       return response;
     }

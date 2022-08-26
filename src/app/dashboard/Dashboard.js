@@ -241,7 +241,7 @@ const Dashboard = () => {
 
       {/* FIRST ROW  */}
       <div className="row">
-        {cardDetails.length && cardDetails.map((e, idx) => (
+        {cardDetails.map((e, idx) => (
           <div className="col-md-3 stretch-card grid-margin" key={idx}>
             {(defaultTimer || isLoading) ? <CardShimmerEffect /> : 
             <div
@@ -273,34 +273,35 @@ const Dashboard = () => {
       {cardDetails.length ? (
       <div className="row">
         <div className="col-md-7 grid-margin stretch-card">
-          <div className="card">
-            <div className="card-body">
-              <div className="clearfix mb-4">
-                <h4 className="card-title float-left">Graphics Stats</h4>
-                <div
-                  id="visit-sale-chart-legend"
-                  className="rounded-legend legend-horizontal legend-top-right float-right"
-                >
-                  <ul>
-                    {cardDetails.length && cardDetails.map((e, idx) => (
-                      <li key={idx}>
-                        <span
-                          className={`legend-dots ${e.additionalClass}`}
-                        ></span>
-                        {e.label}
-                      </li>
-                    ))}
-                  </ul>
+            <div className="card">
+              <div className="card-body">
+                <div className="clearfix mb-4">
+                  <h4 className="card-title float-left">Graphics Stats</h4>
+                  <div
+                    id="visit-sale-chart-legend"
+                    className="rounded-legend legend-horizontal legend-top-right float-right"
+                  >
+                    <ul>
+                      {cardDetails.length && cardDetails.map((e, idx) => (
+                        <li key={idx}>
+                          <span
+                            className={`legend-dots ${e.additionalClass}`}
+                          ></span>
+                          {e.label}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
+                <Bar
+                  className="chartLegendContainer"
+                  data={visitSaleData}
+                  options={visitSaleOptions}
+                  id="visitSaleChart"
+                />
               </div>
-              <Bar
-                className="chartLegendContainer"
-                data={visitSaleData}
-                options={visitSaleOptions}
-                id="visitSaleChart"
-              />
             </div>
-          </div>
+          
         </div>
 
         <div className="col-md-5 grid-margin stretch-card">
@@ -326,6 +327,7 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
+        
         </div>
       </div>
       ) : null}
