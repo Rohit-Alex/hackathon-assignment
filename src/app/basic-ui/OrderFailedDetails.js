@@ -23,7 +23,7 @@ const OrderFailedDetails = () => {
       setIsLoading(true);
       const { data: { failedEvents = [] } = {} } = await getTableData(eventId);
       setApiData(failedEvents);
-      response[0] = data;
+      response[0] = failedEvents;
     } catch (err) {
       response[1] = err;
     } finally {
