@@ -49,14 +49,10 @@ const OrderFailedDetails = () => {
     setClicked((prev) => ({ ...prev, [clickedData.id]: true }));
     const clonedApiData = JSON.parse(JSON.stringify(apiData));
     // const clonedApiData = JSON.parse(JSON.stringify(tempApiData));
-    const indexPresent = clonedApiData.findIndex(
-      (e) => e.id === clickedData.id
-    );
+    const indexPresent = clonedApiData.findIndex((e) => e.id === clickedData.id)
     let status = "";
     try {
-      const { data: { resolution = "" } = {} } = await updateStatus(
-        clickedData?.orderNumber
-      );
+      const { data: { resolution = "" } = {} } = await updateStatus(clickedData?.orderNumber)
       status = resolution;
     } catch (err) {
       console.log(err, "err");
@@ -65,10 +61,10 @@ const OrderFailedDetails = () => {
       if (indexPresent !== -1) {
         clonedApiData[indexPresent].resolution = status;
       }
-      setApiData(clonedApiData);
-      // setTempApiData(clonedApiData);
-      setClicked((prev) => ({ ...prev, [clickedData.id]: false }));
-    }, 700);
+      setApiData(clonedApiData)
+      // setTempApiData(clonedApiData)
+      setClicked((prev) => ({ ...prev, [clickedData.id]: false }))
+    }, 500)
   };
   return (
     <div className="event-details-container">
