@@ -3,7 +3,7 @@ import { makeHttpRequest } from "../../utils";
 export const getOrderFailedCount = () => {
   return new Promise((resolve, reject) => {
     makeHttpRequest({
-      path: "https://dd17-117-217-192-41.in.ngrok.io/v1/orderInfo/count",
+      path: "http://localhost:8080/v1/orderInfo/count",
       method: "get",
     })
       .then((res) => {
@@ -48,7 +48,7 @@ export const getDashboardData = () => {
 export const getTableData = (eventId) => {
   return new Promise((resolve, reject) => {
     makeHttpRequest({
-      path: `http://localhost:8080/v1/orderInfo/orderCreated${eventId}`,
+      path: `http://localhost:8080/v1/orderInfo/${eventId}`,
       method: "get",
     })
       .then((res) => {
@@ -60,11 +60,11 @@ export const getTableData = (eventId) => {
   });
 };
 
-export const updateStatus = () => {
+export const updateStatus = (orderNumber) => {
   return new Promise((resolve, reject) => {
     makeHttpRequest({
-      path: "http://localhost:8080/v1/orderInfo/orderCreated",
-      method: "get",
+      path: `http://localhost:8080/v1/orderInfo/trigger?orderNumber=${orderNumber}`,
+      method: "post",
     })
       .then((res) => {
         resolve(res || {});
