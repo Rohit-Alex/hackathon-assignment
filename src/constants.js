@@ -142,7 +142,7 @@ export const columnsForMultiSelect = (clickHandler, clicked) => [
     render: (_, record) => {
       if (clicked?.[record.id] === undefined) return null
       if (clicked?.[record.id]) return <Tag icon={<SyncOutlined spin />} color="processing">processing</Tag>
-      return <Tag icon={<CheckCircleOutlined />} color="success">{record?.resolution}</Tag>
+      return <Tag icon={<CheckCircleOutlined />} color="success">{record?.resolution || 'Success'}</Tag>
     }
   },
   {
